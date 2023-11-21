@@ -1,8 +1,8 @@
 //
 //  Persistence.swift
-//  WatherForecast
+//  weather forcast
 //
-//  Created by Hamada Aljarrah on 2023-11-21.
+//  Created by Tim Johansson on 2023-11-21.
 //
 
 import CoreData
@@ -31,7 +31,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "WatherForecast")
+        container = NSPersistentContainer(name: "weather_forcast")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

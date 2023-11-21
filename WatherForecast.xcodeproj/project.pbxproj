@@ -16,6 +16,7 @@
 		944CB9912B0CFA350054B481 /* WatherForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9902B0CFA350054B481 /* WatherForecastTests.swift */; };
 		944CB99B2B0CFA350054B481 /* WatherForecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB99A2B0CFA350054B481 /* WatherForecastUITests.swift */; };
 		944CB99D2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */; };
+		CE5EFB802B0D04BF0066E9AD /* WeatherForcastVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		944CB9962B0CFA350054B481 /* WatherForecastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatherForecastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		944CB99A2B0CFA350054B481 /* WatherForecastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatherForecastUITests.swift; sourceTree = "<group>"; };
 		944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatherForecastUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForcastVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +101,13 @@
 		944CB9782B0CFA330054B481 /* WatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				CE5EFB7E2B0D04A60066E9AD /* Model */,
+				CE5EFB7C2B0D04490066E9AD /* Persistance */,
+				CE5EFB7D2B0D04960066E9AD /* View */,
 				944CB9792B0CFA330054B481 /* WatherForecastApp.swift */,
-				944CB97B2B0CFA330054B481 /* Persistence.swift */,
 				944CB9802B0CFA330054B481 /* ContentView.swift */,
 				944CB9822B0CFA350054B481 /* Assets.xcassets */,
 				944CB9842B0CFA350054B481 /* WatherForecast.entitlements */,
-				944CB97D2B0CFA330054B481 /* WatherForecast.xcdatamodeld */,
 				944CB9852B0CFA350054B481 /* Preview Content */,
 			);
 			path = WatherForecast;
@@ -133,6 +136,30 @@
 				944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */,
 			);
 			path = WatherForecastUITests;
+			sourceTree = "<group>";
+		};
+		CE5EFB7C2B0D04490066E9AD /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				944CB97B2B0CFA330054B481 /* Persistence.swift */,
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		CE5EFB7D2B0D04960066E9AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE5EFB7E2B0D04A60066E9AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				944CB97D2B0CFA330054B481 /* WatherForecast.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				944CB97A2B0CFA330054B481 /* WatherForecastApp.swift in Sources */,
+				CE5EFB802B0D04BF0066E9AD /* WeatherForcastVM.swift in Sources */,
 				944CB97F2B0CFA330054B481 /* WatherForecast.xcdatamodeld in Sources */,
 				944CB9812B0CFA330054B481 /* ContentView.swift in Sources */,
 				944CB97C2B0CFA330054B481 /* Persistence.swift in Sources */,
@@ -420,10 +448,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WatherForecast/WatherForecast.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatherForecast/Preview Content\"";
-				DEVELOPMENT_TEAM = B3K278KPHG;
+				DEVELOPMENT_TEAM = LK677WVD79;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -444,6 +473,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Hamada.se.WatherForecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -458,10 +488,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WatherForecast/WatherForecast.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatherForecast/Preview Content\"";
-				DEVELOPMENT_TEAM = B3K278KPHG;
+				DEVELOPMENT_TEAM = LK677WVD79;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -482,6 +513,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Hamada.se.WatherForecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
