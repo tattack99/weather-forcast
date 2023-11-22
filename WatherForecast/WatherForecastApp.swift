@@ -14,8 +14,8 @@ struct WatherForecastApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(viewModel)
+                ContentView()
+                    .environmentObject(viewModel)
+            }
         }
-    }
 }

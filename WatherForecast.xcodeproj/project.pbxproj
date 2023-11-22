@@ -16,6 +16,9 @@
 		944CB9912B0CFA350054B481 /* WatherForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9902B0CFA350054B481 /* WatherForecastTests.swift */; };
 		944CB99B2B0CFA350054B481 /* WatherForecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB99A2B0CFA350054B481 /* WatherForecastUITests.swift */; };
 		944CB99D2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */; };
+		944CB9AF2B0E07E10054B481 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9AE2B0E07E10054B481 /* StartScreen.swift */; };
+		944CB9B12B0E07FE0054B481 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9B02B0E07FE0054B481 /* DetailsScreen.swift */; };
+		944CB9B32B0E52AD0054B481 /* FavoriteLocationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9B22B0E52AD0054B481 /* FavoriteLocationCard.swift */; };
 		CE5EFB802B0D04BF0066E9AD /* WeatherForcastVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,9 @@
 		944CB9962B0CFA350054B481 /* WatherForecastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatherForecastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		944CB99A2B0CFA350054B481 /* WatherForecastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatherForecastUITests.swift; sourceTree = "<group>"; };
 		944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatherForecastUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		944CB9AE2B0E07E10054B481 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
+		944CB9B02B0E07FE0054B481 /* DetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreen.swift; sourceTree = "<group>"; };
+		944CB9B22B0E52AD0054B481 /* FavoriteLocationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteLocationCard.swift; sourceTree = "<group>"; };
 		CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForcastVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +107,7 @@
 		944CB9782B0CFA330054B481 /* WatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				944CB9AB2B0E07750054B481 /* Views */,
 				CE5EFB7E2B0D04A60066E9AD /* Model */,
 				CE5EFB7C2B0D04490066E9AD /* Persistance */,
 				CE5EFB7D2B0D04960066E9AD /* View */,
@@ -136,6 +143,32 @@
 				944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */,
 			);
 			path = WatherForecastUITests;
+			sourceTree = "<group>";
+		};
+		944CB9AB2B0E07750054B481 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				944CB9AD2B0E07970054B481 /* DetailsScreen */,
+				944CB9AC2B0E078B0054B481 /* StartScreen */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		944CB9AC2B0E078B0054B481 /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				944CB9AE2B0E07E10054B481 /* StartScreen.swift */,
+				944CB9B22B0E52AD0054B481 /* FavoriteLocationCard.swift */,
+			);
+			path = StartScreen;
+			sourceTree = "<group>";
+		};
+		944CB9AD2B0E07970054B481 /* DetailsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				944CB9B02B0E07FE0054B481 /* DetailsScreen.swift */,
+			);
+			path = DetailsScreen;
 			sourceTree = "<group>";
 		};
 		CE5EFB7C2B0D04490066E9AD /* Persistance */ = {
@@ -292,9 +325,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944CB9B32B0E52AD0054B481 /* FavoriteLocationCard.swift in Sources */,
 				944CB97A2B0CFA330054B481 /* WatherForecastApp.swift in Sources */,
+				944CB9AF2B0E07E10054B481 /* StartScreen.swift in Sources */,
 				CE5EFB802B0D04BF0066E9AD /* WeatherForcastVM.swift in Sources */,
 				944CB97F2B0CFA330054B481 /* WatherForecast.xcdatamodeld in Sources */,
+				944CB9B12B0E07FE0054B481 /* DetailsScreen.swift in Sources */,
 				944CB9812B0CFA330054B481 /* ContentView.swift in Sources */,
 				944CB97C2B0CFA330054B481 /* Persistence.swift in Sources */,
 			);
@@ -452,7 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatherForecast/Preview Content\"";
-				DEVELOPMENT_TEAM = LK677WVD79;
+				DEVELOPMENT_TEAM = B3K278KPHG;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -492,7 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatherForecast/Preview Content\"";
-				DEVELOPMENT_TEAM = LK677WVD79;
+				DEVELOPMENT_TEAM = B3K278KPHG;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
