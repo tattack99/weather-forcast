@@ -8,13 +8,13 @@
 import SwiftUI
 import CoreData
 
+
+
 struct ContentView: View {
     @EnvironmentObject var viewModel: weather_forcastVM
     var body: some View {
        StartScreen()
     }
-
-   
 }
 
 struct ContentView_Previews: PreviewProvider {

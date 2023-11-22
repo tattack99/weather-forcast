@@ -19,6 +19,13 @@
 		944CB9AF2B0E07E10054B481 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9AE2B0E07E10054B481 /* StartScreen.swift */; };
 		944CB9B12B0E07FE0054B481 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9B02B0E07FE0054B481 /* DetailsScreen.swift */; };
 		944CB9B32B0E52AD0054B481 /* FavoriteLocationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9B22B0E52AD0054B481 /* FavoriteLocationCard.swift */; };
+		944CB9B62B0E80A50054B481 /* BlurCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9B52B0E80A50054B481 /* BlurCard.swift */; };
+		944CB9C22B0E860A0054B481 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 944CB9C12B0E860A0054B481 /* Fonts */; };
+		944CB9C42B0E8E6D0054B481 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9C32B0E8E6D0054B481 /* AddButton.swift */; };
+		944CB9C72B0EA2560054B481 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9C62B0EA2560054B481 /* BackgroundImage.swift */; };
+		944CB9C92B0EA5AE0054B481 /* HourListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9C82B0EA5AE0054B481 /* HourListCard.swift */; };
+		944CB9CB2B0EA5C20054B481 /* DayListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9CA2B0EA5C20054B481 /* DayListCard.swift */; };
+		944CB9CD2B0EAC9E0054B481 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9CC2B0EAC9E0054B481 /* TemperatureView.swift */; };
 		CE5EFB802B0D04BF0066E9AD /* WeatherForcastVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +63,14 @@
 		944CB9AE2B0E07E10054B481 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		944CB9B02B0E07FE0054B481 /* DetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreen.swift; sourceTree = "<group>"; };
 		944CB9B22B0E52AD0054B481 /* FavoriteLocationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteLocationCard.swift; sourceTree = "<group>"; };
+		944CB9B52B0E80A50054B481 /* BlurCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurCard.swift; sourceTree = "<group>"; };
+		944CB9BE2B0E84C60054B481 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		944CB9C12B0E860A0054B481 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = ../../../../../Downloads/Fonts; sourceTree = "<group>"; };
+		944CB9C32B0E8E6D0054B481 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		944CB9C62B0EA2560054B481 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
+		944CB9C82B0EA5AE0054B481 /* HourListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourListCard.swift; sourceTree = "<group>"; };
+		944CB9CA2B0EA5C20054B481 /* DayListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayListCard.swift; sourceTree = "<group>"; };
+		944CB9CC2B0EAC9E0054B481 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
 		CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForcastVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +122,8 @@
 		944CB9782B0CFA330054B481 /* WatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				944CB9C12B0E860A0054B481 /* Fonts */,
+				944CB9BE2B0E84C60054B481 /* Info.plist */,
 				944CB9AB2B0E07750054B481 /* Views */,
 				CE5EFB7E2B0D04A60066E9AD /* Model */,
 				CE5EFB7C2B0D04490066E9AD /* Persistance */,
@@ -148,6 +165,8 @@
 		944CB9AB2B0E07750054B481 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				944CB9C52B0EA2380054B481 /* Shared */,
+				944CB9B42B0E807D0054B481 /* Modifiers */,
 				944CB9AD2B0E07970054B481 /* DetailsScreen */,
 				944CB9AC2B0E078B0054B481 /* StartScreen */,
 			);
@@ -159,6 +178,7 @@
 			children = (
 				944CB9AE2B0E07E10054B481 /* StartScreen.swift */,
 				944CB9B22B0E52AD0054B481 /* FavoriteLocationCard.swift */,
+				944CB9C32B0E8E6D0054B481 /* AddButton.swift */,
 			);
 			path = StartScreen;
 			sourceTree = "<group>";
@@ -167,8 +187,27 @@
 			isa = PBXGroup;
 			children = (
 				944CB9B02B0E07FE0054B481 /* DetailsScreen.swift */,
+				944CB9C82B0EA5AE0054B481 /* HourListCard.swift */,
+				944CB9CA2B0EA5C20054B481 /* DayListCard.swift */,
 			);
 			path = DetailsScreen;
+			sourceTree = "<group>";
+		};
+		944CB9B42B0E807D0054B481 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				944CB9B52B0E80A50054B481 /* BlurCard.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		944CB9C52B0EA2380054B481 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				944CB9C62B0EA2560054B481 /* BackgroundImage.swift */,
+				944CB9CC2B0EAC9E0054B481 /* TemperatureView.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		CE5EFB7C2B0D04490066E9AD /* Persistance */ = {
@@ -299,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944CB9C22B0E860A0054B481 /* Fonts in Resources */,
 				944CB9872B0CFA350054B481 /* Preview Assets.xcassets in Resources */,
 				944CB9832B0CFA350054B481 /* Assets.xcassets in Resources */,
 			);
@@ -328,9 +368,15 @@
 				944CB9B32B0E52AD0054B481 /* FavoriteLocationCard.swift in Sources */,
 				944CB97A2B0CFA330054B481 /* WatherForecastApp.swift in Sources */,
 				944CB9AF2B0E07E10054B481 /* StartScreen.swift in Sources */,
+				944CB9C42B0E8E6D0054B481 /* AddButton.swift in Sources */,
 				CE5EFB802B0D04BF0066E9AD /* WeatherForcastVM.swift in Sources */,
+				944CB9CD2B0EAC9E0054B481 /* TemperatureView.swift in Sources */,
 				944CB97F2B0CFA330054B481 /* WatherForecast.xcdatamodeld in Sources */,
+				944CB9B62B0E80A50054B481 /* BlurCard.swift in Sources */,
+				944CB9CB2B0EA5C20054B481 /* DayListCard.swift in Sources */,
+				944CB9C72B0EA2560054B481 /* BackgroundImage.swift in Sources */,
 				944CB9B12B0E07FE0054B481 /* DetailsScreen.swift in Sources */,
+				944CB9C92B0EA5AE0054B481 /* HourListCard.swift in Sources */,
 				944CB9812B0CFA330054B481 /* ContentView.swift in Sources */,
 				944CB97C2B0CFA330054B481 /* Persistence.swift in Sources */,
 			);
@@ -419,6 +465,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -471,6 +519,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -492,6 +542,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WatherForecast/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -502,7 +553,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -532,6 +583,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WatherForecast/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -542,7 +594,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;

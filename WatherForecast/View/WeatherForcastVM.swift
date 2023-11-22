@@ -16,8 +16,37 @@ class weather_forcastVM : ObservableObject {
     var storage = PersistenceController()
     
     init(){
-        loadEntities()
-    }
+            //testThread()
+            //fetchData()
+        }
+
+        func fetchData(){
+            let apiUrl = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m")!
+
+            // Create a URLSession configuration
+            let sessionConfig = URLSessionConfiguration.default
+            let session = URLSession(configuration: sessionConfig)
+
+            // Create a URLSessionDataTask to make the GET request
+            let task = session.dataTask(with: apiUrl) { (data, response, error) in
+                if let error = error {
+                    print("Error: (error.localizedDescription)")
+                } else if let data = data {
+                    // Parse and process the data (in this example, we'll print it as a string)
+                    if let dataString = String(data: data, encoding: .utf8) {
+                        print("Data received: (dataString)")
+                    }
+                }
+            }
+
+            // Start the data task
+            task.resume()
+
+            // Run the URLSession to initiate the API request
+            session.finishTasksAndInvalidate()
+
+        }
+ 
     
     private func loadEntities() {
         let fetchedEntities = storage.fetchEntities().map { Persistance(text: $0.text ?? "") }
@@ -44,4 +73,5 @@ class weather_forcastVM : ObservableObject {
         storage.deleteEntity(entity: entityToDelete)
         loadEntities()
     }
+    
 }

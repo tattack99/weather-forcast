@@ -6,19 +6,8 @@
 //
 
 import SwiftUI
-import UIKit
 
-struct VisualEffectBlur: UIViewRepresentable {
-    var effect: UIVisualEffect?
-    
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        return UIVisualEffectView(effect: effect)
-    }
-    
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = effect
-    }
-}
+
 
 struct FavoriteLocationCard: View {
     let name: String
@@ -27,27 +16,40 @@ struct FavoriteLocationCard: View {
         NavigationLink(destination: DetailsScreen()) {
             HStack{
                 VStack(alignment: .leading){
-                    Spacer()
                     Text(name)
+                        .foregroundColor(.white)
+//                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 1)
+                        .font(Font.custom("Exo-Bold", size: 30))
+                        
                     Spacer()
-                    Text("15C")
-                    Spacer()
+                    HStack{
+                        Text("15")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .font(Font.custom("Exo-Bold", size: 50))
+                            
+                        Text("ºC")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .font(.system(size: 30))    
+                    }
                 }
                 
                 Spacer()
                 
                 Image("sun-cloud")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: 100)
+                    
             }
-            .padding(15)
-            .cornerRadius(20)
-            .background(Color.white.opacity(0.1))
-            .background(VisualEffectBlur(effect: UIBlurEffect(style: .systemMaterial)))
+            .BlurCardStyle()
+            
 
-            
-            
         }
-        .navigationTitle(name)
+        
+     
     }
+        
 }
 

@@ -9,7 +9,17 @@ import SwiftUI
 
 struct DetailsScreen: View {
     var body: some View {
-        Text("Details Page")
+        ZStack {
+            
+            BackgroundImage(imageName: "details-bg-light", overlayOpacity: 0.1)
+            
+            VStack{
+                HourListCard()
+                DayListCard()
+            }
+            
+            
+        }
     }
 }
 

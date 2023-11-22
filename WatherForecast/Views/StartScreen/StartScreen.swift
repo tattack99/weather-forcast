@@ -7,29 +7,35 @@
 
 import SwiftUI
 
+struct FavoritLocation {
+    var locationName: String
+    var temperature: Int
+    var rain: Double
+    var snow: Double
+    var cloud: Int
+}
+
 struct StartScreen: View {
-    let items = ["Item 1", "Item 2", "Item 3"]
+    let items = ["Stockholm", "Göteborg", "Malmö"]
     
     var body: some View {
-        ZStack {
-            
-            Image("start-bg-light")
-                .resizable() 
-                .aspectRatio(contentMode: .fill)
-                .edgesIgnoringSafeArea(.all)
-
-            
-            NavigationView {
+        NavigationView {
+            ZStack {
+                BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1)
+                
                 ScrollView {
-                    VStack {
+                    VStack (alignment:.leading){
+                        AddButton()
                         ForEach(items, id: \.self) { item in
                             FavoriteLocationCard(name: item)
+                                .padding(.bottom, 10)
                         }
                     }
                 }
-                .navigationBarTitle("Items", displayMode: .inline)
+                .padding()
+                .padding(.top, 30)
+                
             }
-            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
