@@ -13,9 +13,6 @@
 		944CB9812B0CFA330054B481 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9802B0CFA330054B481 /* ContentView.swift */; };
 		944CB9832B0CFA350054B481 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944CB9822B0CFA350054B481 /* Assets.xcassets */; };
 		944CB9872B0CFA350054B481 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944CB9862B0CFA350054B481 /* Preview Assets.xcassets */; };
-		944CB9912B0CFA350054B481 /* WatherForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9902B0CFA350054B481 /* WatherForecastTests.swift */; };
-		944CB99B2B0CFA350054B481 /* WatherForecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB99A2B0CFA350054B481 /* WatherForecastUITests.swift */; };
-		944CB99D2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */; };
 		944CB9AF2B0E07E10054B481 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9AE2B0E07E10054B481 /* StartScreen.swift */; };
 		944CB9B12B0E07FE0054B481 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9B02B0E07FE0054B481 /* DetailsScreen.swift */; };
 		944CB9B32B0E52AD0054B481 /* FavoriteLocationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9B22B0E52AD0054B481 /* FavoriteLocationCard.swift */; };
@@ -57,10 +54,7 @@
 		944CB9842B0CFA350054B481 /* WatherForecast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatherForecast.entitlements; sourceTree = "<group>"; };
 		944CB9862B0CFA350054B481 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		944CB98C2B0CFA350054B481 /* WatherForecastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatherForecastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		944CB9902B0CFA350054B481 /* WatherForecastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatherForecastTests.swift; sourceTree = "<group>"; };
 		944CB9962B0CFA350054B481 /* WatherForecastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatherForecastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		944CB99A2B0CFA350054B481 /* WatherForecastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatherForecastUITests.swift; sourceTree = "<group>"; };
-		944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatherForecastUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		944CB9AE2B0E07E10054B481 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		944CB9B02B0E07FE0054B481 /* DetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreen.swift; sourceTree = "<group>"; };
 		944CB9B22B0E52AD0054B481 /* FavoriteLocationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteLocationCard.swift; sourceTree = "<group>"; };
@@ -105,8 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				944CB9782B0CFA330054B481 /* WatherForecast */,
-				944CB98F2B0CFA350054B481 /* WatherForecastTests */,
-				944CB9992B0CFA350054B481 /* WatherForecastUITests */,
 				944CB9772B0CFA330054B481 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,23 +137,6 @@
 				944CB9862B0CFA350054B481 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		944CB98F2B0CFA350054B481 /* WatherForecastTests */ = {
-			isa = PBXGroup;
-			children = (
-				944CB9902B0CFA350054B481 /* WatherForecastTests.swift */,
-			);
-			path = WatherForecastTests;
-			sourceTree = "<group>";
-		};
-		944CB9992B0CFA350054B481 /* WatherForecastUITests */ = {
-			isa = PBXGroup;
-			children = (
-				944CB99A2B0CFA350054B481 /* WatherForecastUITests.swift */,
-				944CB99C2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift */,
-			);
-			path = WatherForecastUITests;
 			sourceTree = "<group>";
 		};
 		944CB9AB2B0E07750054B481 /* Views */ = {
@@ -398,7 +373,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				944CB9912B0CFA350054B481 /* WatherForecastTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,8 +380,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				944CB99D2B0CFA350054B481 /* WatherForecastUITestsLaunchTests.swift in Sources */,
-				944CB99B2B0CFA350054B481 /* WatherForecastUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
