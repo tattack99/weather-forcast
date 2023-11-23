@@ -7,12 +7,24 @@
 
 import Foundation
 
+struct LocationData: Codable {
+    let lat: String
+    let lon: String
+}
+extension LocationData {
+    static var empty: LocationData {
+        return LocationData(lat: "0", lon: "0")
+    }
+}
+
+
 // Define the structure that matches the JSON response
 struct WeatherResponse: Codable {
     let latitude: Double
     let longitude: Double
     let hourly: HourlyData
 }
+
 
 struct HourlyData: Codable {
     let time: [String]
@@ -38,7 +50,7 @@ extension HourlyData {
 
 struct ParserJson {
     
-    func parseJson(json: String) async throws -> WeatherResponse {
+    func parseWeatherDataResponse(json: String) async throws -> WeatherResponse {
         guard let jsonData = json.data(using: .utf8) else {
             throw ParserError.invalidStringEncoding
         }
@@ -65,5 +77,25 @@ struct ParserJson {
             throw ParserError.couldNotParse
         }
         return weatherData
+    }
+    
+    
+    func parseLocationDataResponse(json: String) async throws -> LocationData {
+        guard let jsonData = json.data(using: .utf8) else {
+            throw ParserError.invalidStringEncoding
+        }
+        
+        var locationData : [LocationData]
+        
+        let decoder = JSONDecoder()
+        do {
+            locationData = try decoder.decode([LocationData].self, from: jsonData)
+            print("Lat: \(locationData[0].lat)")
+            print("Lon: \(locationData[0].lon)")
+            
+        } catch {
+            throw ParserError.couldNotParse
+        }
+        return locationData[0]
     }
 }

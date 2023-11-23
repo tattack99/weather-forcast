@@ -30,38 +30,43 @@ struct AddButton: View {
     
 }
 
-// Create seperate file when grown
 struct AddFavoriteLocationView: View {
+    @EnvironmentObject var viewModel: weather_forcastVM
     @Binding var showEditSheet: Bool
     @State private var locationInput: String = ""
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) { // Use .top alignment
-                HStack() {
-                    Spacer()
-                    Button("Cancel") {
-                        showEditSheet = false
-                    }
-                }.padding(.top, 5)
-                
-                TextField("Search location", text: $locationInput)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                Button("Add to favorite") {
-                    submitLocation()
-                }
-             
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Spacer()
+                Button("Cancel") { showEditSheet = false }
             }
-            .padding()
-            Spacer()
-        
+            .padding(.top, 5)
+
+            TextField("Search location", text: $locationInput)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+
+            Button("Add to favorite") {
+                submitLocation()
+            }
+        }
+        .padding()
+        Spacer()
     }
 
     private func submitLocation() {
-        
-        print("Submitted location: \(locationInput)")
-       
-        showEditSheet = false
+        Task {
+            let locationData = await viewModel.fetchLocationData(locationName: locationInput)
+            let weatherData = await viewModel.fetchWeatherData(lat: locationData.lat, lon: locationData.lon)
+            await MainActor.run {
+                
+                for el in weatherData.hourly.time {
+                    print(el)
+                }
+                
+                showEditSheet = false
+            }
+        }
     }
 }
 

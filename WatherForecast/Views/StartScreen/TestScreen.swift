@@ -16,7 +16,7 @@ struct TestScreen: View {
         VStack {
             Button(action: {
                 Task {
-                    fetchedData = await viewModel.fetchData()
+                    fetchedData = await viewModel.fetchWeatherData(lat:"59.3251172", lon:"18.0710935")
                     isDataFetched = true
                 }
             }) {

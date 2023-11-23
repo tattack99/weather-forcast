@@ -8,14 +8,32 @@
 import Foundation
 import Network
 
+
+
 struct WeatherNetwork {
     
-    func fetchData() async throws -> String {
-        
-        let latitude = 52.52
-        let longitude = 13.41
+    func fetchCoordinatesByLocationName(locationName:String) async throws -> String {
+        guard let apiUrl = URL(string: "https://geocode.maps.co/search?q=\(locationName.lowercased())") else {
+            throw NetworkError.badURL
+        }
 
-        guard let apiUrl = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&hourly=temperature_2m") else {
+        let (data, response) = try await URLSession.shared.data(from: apiUrl)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw NetworkError.invalidResponse
+        }
+        
+        if let dataString = String(data: data, encoding: .utf8) {
+            return dataString
+        }
+        else {
+            throw ParserError.invalidStringEncoding
+        }
+    }
+    
+    func fetchWeatherData(lat:String,lon:String) async throws -> String {
+        
+        guard let apiUrl = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(lat)&longitude=\(lon)&hourly=temperature_2m") else {
             throw NetworkError.badURL
         }
 

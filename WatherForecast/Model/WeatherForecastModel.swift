@@ -18,17 +18,32 @@ struct WeatherForecastModel{
         self.parser = ParserJson()
     }
     
-    func fetchData() async -> WeatherResponse? {
+    func fetchWeatherData(lat:String, lon:String) async -> WeatherResponse? {
         var json : String = ""
         var weatherData : WeatherResponse
         
         do{
-            json = try await network.fetchData()
-            weatherData = try await parser.parseJson(json: json)
+            json = try await network.fetchWeatherData(lat: lat, lon: lon)
+            weatherData = try await parser.parseWeatherDataResponse(json: json)
             return weatherData
         }
         catch {
-            print("Error fetching data")
+            print("Error fetching weather data")
+        }
+        return nil
+    }
+    
+    func fetchLocationData(locationName:String) async -> LocationData? {
+        var json : String = ""
+        var locationData : LocationData
+        
+        do{
+            json = try await network.fetchCoordinatesByLocationName(locationName: locationName)
+            locationData = try await parser.parseLocationDataResponse(json: json)
+            return locationData
+        }
+        catch {
+            print("Error fetching location data: \(error.localizedDescription)")
         }
         return nil
     }

@@ -38,9 +38,13 @@ class weather_forcastVM : ObservableObject {
         }
     }
 
+    func fetchLocationData(locationName:String) async -> LocationData {
+        await model.fetchLocationData(locationName: locationName) ?? LocationData.empty
+    }
+    
     // get data from REST api
-    func fetchData() async -> WeatherResponse {
-        await model.fetchData() ?? WeatherResponse.empty
+    func fetchWeatherData(lat:String, lon:String) async -> WeatherResponse {
+        await model.fetchWeatherData(lat:lat,lon:lon) ?? WeatherResponse.empty
     }
 
     func createEntity(text: String) {
