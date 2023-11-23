@@ -9,5 +9,12 @@
 		<string>Fonts/Exo-Medium.ttf</string>
 		<string>Fonts/Exo-Light.ttf</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>launchColor</string>
+		<key>UIImageName</key>
+		<string>LaunchBg</string>
+	</dict>
 </dict>
 </plist>

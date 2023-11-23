@@ -41,31 +41,36 @@ struct DayItem : View{
     var body: some View {
         HStack{
             HStack{
+                
+                Text(data.day)
+                    .foregroundColor(.white)
+                    .font(.custom("Exo-regular", size: 16))
+                
+                Spacer()
                 Image(data.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 40)
+                    .frame(width: 30)
                     .padding(.trailing, 5)
                     .padding(.bottom, 10)
                 
-                HStack{
-                    Text("\(data.temp)")
-                        .foregroundColor(.white)
-                        .font(.custom("Exo-regular", size: 20))
-                        
-                    Text("ºC")
-                        .foregroundColor(.white)
-                        .font(.system(size: 15))
-                        .padding(.leading, -7)
-                        
-                }
+               
             }
+            .frame(width: 80)
             
             Spacer()
-            
-            Text(data.day)
-                .foregroundColor(.white)
-                .font(.custom("Exo-regular", size: 16))
+            HStack{
+                Text("\(data.temp)")
+                    .foregroundColor(.white)
+                    .font(.custom("Exo-regular", size: 18))
+                    
+                Text("º")
+                    .foregroundColor(.white)
+                    .font(.system(size: 18))
+                    .padding(.leading, -8)
+                    
+            }
+           
             
         }
         .overlay(

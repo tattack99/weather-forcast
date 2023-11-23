@@ -44,18 +44,18 @@ struct HourItem : View{
             Image(data.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 40)
+                .frame(width: 30)
              
             
             HStack{
                 Text("\(data.temp)")
                     .foregroundColor(.white)
-                    .font(.custom("Exo-regular", size: 20))
+                    .font(.custom("Exo-regular", size: 18))
                     
-                Text("ºC")
+                Text("º")
                     .foregroundColor(.white)
-                    .font(.system(size: 15))
-                    .padding(.leading, -7)
+                    .font(.system(size: 18))
+                    .padding(.leading, -8)
                     
             }
         }

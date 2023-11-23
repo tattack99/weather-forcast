@@ -14,7 +14,8 @@ struct DetailsScreen: View {
             BackgroundImage(imageName: "details-bg-light", overlayOpacity: 0.1)
             
             VStack{
-                HourListCard()
+                TemperatureView()
+                HourListCard().padding(.vertical, -20)
                 DayListCard()
             }
             
