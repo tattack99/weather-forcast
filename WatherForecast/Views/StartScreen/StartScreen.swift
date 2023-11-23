@@ -23,9 +23,10 @@ struct StartScreen: View {
             ZStack {
                 BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1)
                 
-                ScrollView {
-                    VStack (alignment:.leading){
+                
+                VStack (alignment:.leading){
                         AddButton()
+                    ScrollView {
                         ForEach(items, id: \.self) { item in
                             FavoriteLocationCard(name: item)
                                 .padding(.bottom, 10)
