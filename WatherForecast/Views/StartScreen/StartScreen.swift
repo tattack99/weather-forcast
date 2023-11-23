@@ -33,13 +33,13 @@ struct FavoritLocation : Hashable{
 struct StartScreen: View {
     @EnvironmentObject var viewModel: weather_forcastVM
 
-    
+
     var body: some View {
         NavigationView {
             ZStack {
                 BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1)
-                
-                
+
+
                 VStack (alignment:.leading){
                     AddButton()
                     ScrollView {
@@ -51,7 +51,7 @@ struct StartScreen: View {
                 }
                 .padding()
                 .padding(.top, 30)
-                
+
             }
         }
     }
@@ -60,5 +60,6 @@ struct StartScreen: View {
 struct StartPage_Previews: PreviewProvider {
     static var previews: some View {
         StartScreen()
+            .environmentObject(weather_forcastVM())
     }
 }
