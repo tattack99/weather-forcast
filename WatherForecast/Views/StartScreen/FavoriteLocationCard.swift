@@ -10,8 +10,9 @@ import SwiftUI
 
 
 struct FavoriteLocationCard: View {
-    let location: FavoritLocation
-    
+    var location: FavoritLocation
+  
+   
     var body: some View {
         NavigationLink(destination: DetailsScreen(location:location)) {
             HStack{
@@ -23,7 +24,7 @@ struct FavoriteLocationCard: View {
                         
                     Spacer()
                     HStack{
-                        Text("\(location.dayData[0].temp)")
+                        Text("\(Int(location.dayData[0].temp))")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .font(Font.custom("Exo-Bold", size: 50))

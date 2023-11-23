@@ -14,21 +14,21 @@ struct TestScreen: View {
 
     var body: some View {
         VStack {
-            Button(action: {
-                Task {
-                    fetchedData = await viewModel.fetchWeatherData(lat:"59.3251172", lon:"18.0710935")
-                    isDataFetched = true
-                }
-            }) {
-                Image(systemName: "plus")
-                    .foregroundColor(.white) // Text color
-                    .padding() // Padding around the plus symbol
-                    .background(Circle().fill(Color.blue)) // Circular background
-            }
-
-            if isDataFetched, let data = fetchedData {
-                Text("Latitude: \(data.latitude), Longitude: \(data.longitude)")
-            }
+//            Button(action: {
+//                Task {
+//                    fetchedData = await viewModel.fetchWeatherData(lat:"59.3251172", lon:"18.0710935")
+//                    isDataFetched = true
+//                }
+//            }) {
+//                Image(systemName: "plus")
+//                    .foregroundColor(.white) // Text color
+//                    .padding() // Padding around the plus symbol
+//                    .background(Circle().fill(Color.blue)) // Circular background
+//            }
+//
+//            if isDataFetched, let data = fetchedData {
+//                Text("Latitude: \(data.latitude), Longitude: \(data.longitude)")
+//            }
         }
     }
 }

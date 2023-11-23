@@ -44,7 +44,7 @@ struct HourItem : View{
              
             
             HStack{
-                Text("\(data.temp)")
+                Text("\(Int(data.temp))")
                     .foregroundColor(.white)
                     .font(.custom("Exo-regular", size: 18))
                     

@@ -19,15 +19,15 @@ struct TemperatureView: View {
             Image("sun-cloud")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 120)
-            Text("Today \(tempData.currentDate)").font(.custom("Exo-Medium", size: 18)).foregroundColor(.white).padding(.bottom, -10)
+                .frame(width: 120).padding(.top,5)
+            Text("Today \(tempData.date)").font(.custom("Exo-Medium", size: 18)).foregroundColor(.white).padding(.bottom, -10)
             
             HStack{
                 Spacer()
                 SunView(image:"sun-up",time:tempData.sunrise)
                 Spacer()
                 HStack{
-                    Text("\(temp)")
+                    Text("\(Int(temp))")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .font(Font.custom("Exo-Bold", size: 100))
@@ -52,6 +52,8 @@ struct TemperatureView: View {
 struct SunView: View {
     let image :String
     let time : String
+    
+   
     var body: some View{
         VStack{
             Image(image)

@@ -14,17 +14,17 @@ struct DayListCard: View {
     var body: some View {
         VStack(alignment: .leading){
             Text("Daily forecast").foregroundColor(.white).font(.custom("Exo-regular", size: 14)).padding(.bottom, 5)
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
-                    ForEach(dailyData, id: \.self) { day in
-                        DayItem(data: day)
-                            .frame(maxWidth: .infinity)
-                    }
+            
+            VStack(spacing: 20) {
+                ForEach(dailyData, id: \.self) { day in
+                    DayItem(data: day)
+                        .frame(maxWidth: .infinity)
                 }
-                .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity)
+            
         }
-        .frame(maxHeight: 300)
+        .frame(maxHeight: 400)
         .BlurCardStyle()
         .padding()
     }
@@ -38,7 +38,7 @@ struct DayItem : View{
         HStack{
             HStack{
                 
-                Text(data.day)
+                Text(dayName(from:data.day))
                     .foregroundColor(.white)
                     .font(.custom("Exo-regular", size: 16))
                 
@@ -56,7 +56,7 @@ struct DayItem : View{
             
             Spacer()
             HStack{
-                Text("\(data.temp)")
+                Text("\(Int(data.temp))")
                     .foregroundColor(.white)
                     .font(.custom("Exo-regular", size: 18))
                     

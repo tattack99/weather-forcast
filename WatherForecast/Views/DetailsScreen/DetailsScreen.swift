@@ -18,7 +18,7 @@ struct DetailsScreen: View {
             BackgroundImage(imageName: "details-bg-light", overlayOpacity: 0.1)
             ScrollView(showsIndicators: false){
                 VStack{
-                    TemperatureView(tempData: location.tempData, temp: location.dayData[0].temp)
+                    TemperatureView(tempData: location.tempData, temp: Int(location.dayData[0].temp))
                     HourListCard(hourlyData:location.hourData).padding(.vertical, -20)
                     DayListCard(dailyData:location.dayData).padding(.bottom,30)
                 }

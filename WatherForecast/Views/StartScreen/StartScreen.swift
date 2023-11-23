@@ -8,19 +8,19 @@
 import SwiftUI
 struct TemperatureViewData:Equatable, Hashable {
     var locationName: String
-    var currentDate: String
+    var date: String
     var sunrise: String
     var sunset: String
 }
 struct DayItemData: Equatable,Hashable  {
     var day: String
     var image: String
-    var temp: Int
+    var temp: Double
 }
 struct HourItemData: Equatable ,Hashable {
     var time: String
     var image: String
-    var temp: Int
+    var temp: Double
 }
 
 struct FavoritLocation : Hashable{

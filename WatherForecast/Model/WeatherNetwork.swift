@@ -33,7 +33,7 @@ struct WeatherNetwork {
     
     func fetchWeatherData(lat:String,lon:String) async throws -> String {
         
-        guard let apiUrl = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(lat)&longitude=\(lon)&hourly=temperature_2m") else {
+        guard let apiUrl = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(lat)&longitude=\(lon)&hourly=temperature_2m,precipitation,rain,snowfall,cloud_cover&daily=temperature_2m_max,sunrise,sunset,rain_sum,snowfall_sum") else {
             throw NetworkError.badURL
         }
 

@@ -28,7 +28,7 @@ struct WeatherForecastModel{
             return weatherData
         }
         catch {
-            print("Error fetching weather data")
+            print("Error fetching weather dataaaaa \(error.localizedDescription)")
         }
         return nil
     }
@@ -36,7 +36,6 @@ struct WeatherForecastModel{
     func fetchLocationData(locationName:String) async -> LocationData? {
         var json : String = ""
         var locationData : LocationData
-        
         do{
             json = try await network.fetchCoordinatesByLocationName(locationName: locationName)
             locationData = try await parser.parseLocationDataResponse(json: json)

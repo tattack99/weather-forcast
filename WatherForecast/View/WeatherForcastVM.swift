@@ -14,11 +14,13 @@ struct Persistance {
 class weather_forcastVM : ObservableObject {
     @Published var entities : [Persistance]
 
-    @Published var locations = [ // DAMMY DATA
-        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
-        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
-        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
-    ]
+//    @Published var locations = [ // DAMMY DATA
+//        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
+//        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
+//        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
+//    ]
+    @Published var locations: [FavoritLocation] = []
+
 
     private var storage : PersistenceController
     private var model : WeatherForecastModel
@@ -43,8 +45,17 @@ class weather_forcastVM : ObservableObject {
     }
     
     // get data from REST api
-    func fetchWeatherData(lat:String, lon:String) async -> WeatherResponse {
-        await model.fetchWeatherData(lat:lat,lon:lon) ?? WeatherResponse.empty
+    func fetchWeatherData(lat: String, lon: String, loactionName:String) async {
+        var data = await model.fetchWeatherData(lat: lat, lon: lon)
+        data?.locationName = loactionName
+        
+        if let safe = data {
+            
+            DispatchQueue.main.async {
+                self.locations.append(mapWeatherResponseToFavoriteLocation(weatherResponse: safe))
+            }
+        }
+        
     }
 
     func createEntity(text: String) {
@@ -65,5 +76,6 @@ class weather_forcastVM : ObservableObject {
         storage.deleteEntity(entity: entityToDelete)
         loadEntities()
     }
+    
 
 }
