@@ -13,6 +13,13 @@ struct Persistance {
 
 class weather_forcastVM : ObservableObject {
     @Published var entities : [Persistance] = []
+    
+    @Published var locations = [ // DAMMY DATA
+        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
+        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
+        FavoritLocation(tempData: generateTemperatureData(), hourData: generateHourlyData(), dayData: generateDailyData()),
+    ]
+    
     var storage = PersistenceController()
     
     init(){
@@ -30,11 +37,11 @@ class weather_forcastVM : ObservableObject {
             // Create a URLSessionDataTask to make the GET request
             let task = session.dataTask(with: apiUrl) { (data, response, error) in
                 if let error = error {
-                    print("Error: (error.localizedDescription)")
+                    print("Error: \(error.localizedDescription)")
                 } else if let data = data {
                     // Parse and process the data (in this example, we'll print it as a string)
                     if let dataString = String(data: data, encoding: .utf8) {
-                        print("Data received: (dataString)")
+                        print("Data received: \(dataString)")
                     }
                 }
             }

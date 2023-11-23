@@ -10,7 +10,7 @@ import SwiftUI
 
     
 struct DayListCard: View {
-    let dailyData = generateDailyData()
+    let dailyData: [DayItemData]
     var body: some View {
         VStack(alignment: .leading){
             Text("Daily forecast").foregroundColor(.white).font(.custom("Exo-regular", size: 14)).padding(.bottom, 5)
@@ -31,11 +31,7 @@ struct DayListCard: View {
 }
 
 
-struct DayItemData: Hashable  {
-    var day: String
-    var image: String
-    var temp: Int
-}
+
 struct DayItem : View{
     let data : DayItemData
     var body: some View {
@@ -83,24 +79,3 @@ struct DayItem : View{
     }
 }
 
-
-func generateDailyData() -> [DayItemData] {
-    var dailyData: [DayItemData] = []
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "EEEE"
-    
-  
-    let dayNames = ["Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun"]
-    
-    for dayIndex in 0..<7 {
-        let day = dayNames[dayIndex]
-        let image = "cloud-sun"
-        let temp = Int.random(in: 5...15)
-        
-        let data = DayItemData(day: day, image: image, temp: temp)
-        dailyData.append(data)
-    }
-    
-    return dailyData
-}

@@ -8,24 +8,25 @@
 import SwiftUI
 
 struct DetailsScreen: View {
+    let location: FavoritLocation
+    
+    
+    
     var body: some View {
         ZStack {
             
             BackgroundImage(imageName: "details-bg-light", overlayOpacity: 0.1)
             ScrollView(showsIndicators: false){
                 VStack{
-                    TemperatureView()
-                    HourListCard().padding(.vertical, -20)
-                    DayListCard().padding(.bottom,30)
+                    TemperatureView(tempData: location.tempData, temp: location.dayData[0].temp)
+                    HourListCard(hourlyData:location.hourData).padding(.vertical, -20)
+                    DayListCard(dailyData:location.dayData).padding(.bottom,30)
                 }
             }
         }
     }
+    
+    
 }
 
 
-struct DetailsPage_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailsScreen()
-    }
-}

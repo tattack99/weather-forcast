@@ -7,23 +7,27 @@
 
 import SwiftUI
 
+
+
 struct TemperatureView: View {
+    let tempData:TemperatureViewData
+    let temp:Int
     var body: some View {
         VStack{
-            Text("Stockholm").font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -8)
+            Text(tempData.locationName).font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -8)
             
             Image("sun-cloud")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 120)
-            Text("Today 2023-11-12").font(.custom("Exo-Medium", size: 18)).foregroundColor(.white).padding(.bottom, -10)
+            Text("Today \(tempData.currentDate)").font(.custom("Exo-Medium", size: 18)).foregroundColor(.white).padding(.bottom, -10)
             
             HStack{
                 Spacer()
-                SunView(image:"sun-up",time:"04:52")
+                SunView(image:"sun-up",time:tempData.sunrise)
                 Spacer()
                 HStack{
-                    Text("15")
+                    Text("\(temp)")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .font(Font.custom("Exo-Bold", size: 100))
@@ -35,7 +39,7 @@ struct TemperatureView: View {
                         .padding(.leading, -5)
                 }
                 Spacer()
-                SunView(image:"sun-down",time:"19:54")
+                SunView(image:"sun-down",time:tempData.sunset)
                 Spacer()
             }.padding(.top, -15)
         }

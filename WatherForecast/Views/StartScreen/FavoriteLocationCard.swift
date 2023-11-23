@@ -10,20 +10,20 @@ import SwiftUI
 
 
 struct FavoriteLocationCard: View {
-    let name: String
+    let location: FavoritLocation
     
     var body: some View {
-        NavigationLink(destination: DetailsScreen()) {
+        NavigationLink(destination: DetailsScreen(location:location)) {
             HStack{
                 VStack(alignment: .leading){
-                    Text(name)
+                    Text(location.tempData.locationName)
                         .foregroundColor(.white)
 //                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 1)
                         .font(Font.custom("Exo-Bold", size: 30))
                         
                     Spacer()
                     HStack{
-                        Text("15")
+                        Text("\(location.dayData[0].temp)")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .font(Font.custom("Exo-Bold", size: 50))
@@ -37,7 +37,7 @@ struct FavoriteLocationCard: View {
                 
                 Spacer()
                 
-                Image("sun-cloud")
+                Image("sun-cloud") // TODO: Bases on data (cloud, sun, rain, snow) change image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100)

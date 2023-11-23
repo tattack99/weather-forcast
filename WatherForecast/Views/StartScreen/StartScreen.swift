@@ -6,17 +6,33 @@
 //
 
 import SwiftUI
-
-struct FavoritLocation {
+struct TemperatureViewData:Equatable, Hashable {
     var locationName: String
-    var temperature: Int
-    var rain: Double
-    var snow: Double
-    var cloud: Int
+    var currentDate: String
+    var sunrise: String
+    var sunset: String
+}
+struct DayItemData: Equatable,Hashable  {
+    var day: String
+    var image: String
+    var temp: Int
+}
+struct HourItemData: Equatable ,Hashable {
+    var time: String
+    var image: String
+    var temp: Int
 }
 
+struct FavoritLocation : Hashable{
+    var tempData: TemperatureViewData
+    var hourData: [HourItemData]
+    var dayData: [DayItemData]
+}
+
+
 struct StartScreen: View {
-    let items = ["Stockholm", "Göteborg", "Malmö"]
+    @EnvironmentObject var viewModel: weather_forcastVM
+
     
     var body: some View {
         NavigationView {
@@ -25,10 +41,10 @@ struct StartScreen: View {
                 
                 
                 VStack (alignment:.leading){
-                        AddButton()
+                    AddButton()
                     ScrollView {
-                        ForEach(items, id: \.self) { item in
-                            FavoriteLocationCard(name: item)
+                        ForEach(viewModel.locations, id: \.self) { location in
+                            FavoriteLocationCard(location: location)
                                 .padding(.bottom, 10)
                         }
                     }

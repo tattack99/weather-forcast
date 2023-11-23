@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HourListCard: View {
-    let hourlyData = generateHourlyData()
+    let hourlyData : [HourItemData]
     
     var body: some View {
         
@@ -28,11 +28,7 @@ struct HourListCard: View {
 }
 
 
-struct HourItemData: Hashable  {
-    var time: String
-    var image: String
-    var temp: Int
-}
+
 struct HourItem : View{
     let data : HourItemData
     var body: some View {
@@ -61,26 +57,6 @@ struct HourItem : View{
         }
         
     }
-}
-
-// DAMMAY DATA, DELETE THEN
-func generateHourlyData() -> [HourItemData] {
-    var hourlyData: [HourItemData] = []
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "HH:mm"
-    
-    for hour in 0..<24 {
-        let date = Calendar.current.date(bySettingHour: hour, minute: 0, second: 0, of: Date())!
-        let time = dateFormatter.string(from: date)
-        let image = "cloud-sun"
-        let temp = Int.random(in: 5...15)
-        
-        let data = HourItemData(time: time, image: image, temp: temp)
-        hourlyData.append(data)
-    }
-    
-    return hourlyData
 }
 
 
