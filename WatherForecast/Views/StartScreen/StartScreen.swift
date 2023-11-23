@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StartScreen: View {
+    @EnvironmentObject var viewModel : weather_forcastVM
     let items = ["Item 1", "Item 2", "Item 3"]
     
     var body: some View {
@@ -37,5 +38,6 @@ struct StartScreen: View {
 struct StartPage_Previews: PreviewProvider {
     static var previews: some View {
         StartScreen()
+            .environmentObject(weather_forcastVM())
     }
 }

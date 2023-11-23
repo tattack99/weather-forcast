@@ -12,11 +12,17 @@ struct Persistance {
 }
 
 class weather_forcastVM : ObservableObject {
-    @Published var entities : [Persistance] = []
-    var storage = PersistenceController()
+    @Published var entities : [Persistance]
+    
+    private var storage : PersistenceController
+    private var model : WeatherForecastModel
     
     init(){
+        self.entities = []
+        self.storage = PersistenceController()
+        self.model = WeatherForecastModel()
         loadEntities()
+        
     }
     
     private func loadEntities() {
@@ -24,6 +30,11 @@ class weather_forcastVM : ObservableObject {
         DispatchQueue.main.async {
             self.entities = fetchedEntities
         }
+    }
+    
+    // get data from REST api
+    func fetchData() async -> WeatherResponse {
+        await model.fetchData() ?? WeatherResponse.empty
     }
     
     func createEntity(text: String) {
