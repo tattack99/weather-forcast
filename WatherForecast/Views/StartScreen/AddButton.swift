@@ -32,13 +32,36 @@ struct AddButton: View {
 
 // Create seperate file when grown
 struct AddFavoriteLocationView: View {
-    @Binding var showEditSheet : Bool
+    @Binding var showEditSheet: Bool
+    @State private var locationInput: String = ""
+
     var body: some View {
-        Button("Close"){
-            showEditSheet = false
-        }
-        Text("Search location input here")
-        Text("TODO: ADD UI HERE")
+        VStack(alignment: .leading, spacing: 20) { // Use .top alignment
+                HStack() {
+                    Spacer()
+                    Button("Cancel") {
+                        showEditSheet = false
+                    }
+                }.padding(.top, 5)
+                
+                TextField("Search location", text: $locationInput)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                Button("Add to favorite") {
+                    submitLocation()
+                }
+             
+            }
+            .padding()
+            Spacer()
         
     }
+
+    private func submitLocation() {
+        
+        print("Submitted location: \(locationInput)")
+       
+        showEditSheet = false
+    }
 }
+

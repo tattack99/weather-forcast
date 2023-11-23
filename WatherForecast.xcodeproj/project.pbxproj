@@ -27,7 +27,6 @@
 		CE9B66D42B0E704C00EDEA20 /* WeatherNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B66D32B0E704C00EDEA20 /* WeatherNetwork.swift */; };
 		CE9B66D62B0F2F4000EDEA20 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B66D52B0F2F4000EDEA20 /* TestScreen.swift */; };
 		CE9B66D82B0F484E00EDEA20 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B66D72B0F484E00EDEA20 /* Errors.swift */; };
-		CECB8FC92B0F7DFB00A722F2 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = CECB8FC82B0F7DFB00A722F2 /* Fonts */; };
 		CECB8FCB2B0F7E5800A722F2 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB8FCA2B0F7E5800A722F2 /* AddButton.swift */; };
 		CEDFEFE22B0E620E000686FC /* WeatherForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFEFE12B0E620E000686FC /* WeatherForecastModel.swift */; };
 /* End PBXBuildFile section */
@@ -75,7 +74,6 @@
 		CE9B66D32B0E704C00EDEA20 /* WeatherNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetwork.swift; sourceTree = "<group>"; };
 		CE9B66D52B0F2F4000EDEA20 /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
 		CE9B66D72B0F484E00EDEA20 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		CECB8FC82B0F7DFB00A722F2 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = ../../../../../../../Desktop/Fonts; sourceTree = "<group>"; };
 		CECB8FCA2B0F7E5800A722F2 /* AddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		CEDFEFE12B0E620E000686FC /* WeatherForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,7 +124,6 @@
 		944CB9782B0CFA330054B481 /* WatherForecast */ = {
 			isa = PBXGroup;
 			children = (
-				CECB8FC82B0F7DFB00A722F2 /* Fonts */,
 				944CB9BE2B0E84C60054B481 /* Info.plist */,
 				944CB9AB2B0E07750054B481 /* Views */,
 				CE5EFB7E2B0D04A60066E9AD /* Model */,
@@ -339,7 +336,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CECB8FC92B0F7DFB00A722F2 /* Fonts in Resources */,
 				944CB9872B0CFA350054B481 /* Preview Assets.xcassets in Resources */,
 				944CB9832B0CFA350054B481 /* Assets.xcassets in Resources */,
 			);
