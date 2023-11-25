@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G313" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DayItemDataEntity" representedClassName="DayItemDataEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="day" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="temp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="FavoritLocationEntity" representedClassName="FavoritLocationEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="dayData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayItemDataEntity"/>
+        <relationship name="hourData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HourItemDataEntity"/>
+        <relationship name="tempData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TemperatureViewDataEntity"/>
+    </entity>
+    <entity name="HourItemDataEntity" representedClassName="HourItemDataEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="temp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="TemperatureViewDataEntity" representedClassName="TemperatureViewDataEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="locationName" optional="YES" attributeType="String"/>
+        <attribute name="sunrise" optional="YES" attributeType="String"/>
+        <attribute name="sunset" optional="YES" attributeType="String"/>
+    </entity>
+</model>

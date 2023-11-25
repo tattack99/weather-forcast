@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G120" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G313" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FavoritLocationEntity" representedClassName="FavoritLocationEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoritLocationEntity"/>
     </entity>
-    <entity name="PersistanceEntity" representedClassName="PersistanceEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="text" optional="YES" attributeType="String"/>
+    <entity name="TemperatureViewDataEntity" representedClassName="TemperatureViewDataEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="locationName" optional="YES" attributeType="String"/>
+        <attribute name="sunrise" optional="YES" attributeType="String"/>
+        <attribute name="sunset" optional="YES" attributeType="String"/>
     </entity>
 </model>

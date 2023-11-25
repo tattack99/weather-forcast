@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		944CB97A2B0CFA330054B481 /* WatherForecastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9792B0CFA330054B481 /* WatherForecastApp.swift */; };
-		944CB97C2B0CFA330054B481 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB97B2B0CFA330054B481 /* Persistence.swift */; };
-		944CB97F2B0CFA330054B481 /* WatherForecast.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 944CB97D2B0CFA330054B481 /* WatherForecast.xcdatamodeld */; };
+		944CB97C2B0CFA330054B481 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB97B2B0CFA330054B481 /* PersistenceController.swift */; };
 		944CB9812B0CFA330054B481 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9802B0CFA330054B481 /* ContentView.swift */; };
 		944CB9832B0CFA350054B481 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944CB9822B0CFA350054B481 /* Assets.xcassets */; };
 		944CB9872B0CFA350054B481 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944CB9862B0CFA350054B481 /* Preview Assets.xcassets */; };
@@ -22,6 +21,7 @@
 		944CB9CB2B0EA5C20054B481 /* DayListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9CA2B0EA5C20054B481 /* DayListCard.swift */; };
 		944CB9D12B0F36A50054B481 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9D02B0F36A50054B481 /* TemperatureView.swift */; };
 		944CB9D42B0F5C780054B481 /* mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CB9D32B0F5C780054B481 /* mapper.swift */; };
+		CE197EF32B1083F30008EBFF /* Persistance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE197EF12B1083F30008EBFF /* Persistance.xcdatamodeld */; };
 		CE5EFB802B0D04BF0066E9AD /* WeatherForcastVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */; };
 		CE9B66D22B0E6D0B00EDEA20 /* ParserJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B66D12B0E6D0B00EDEA20 /* ParserJson.swift */; };
 		CE9B66D42B0E704C00EDEA20 /* WeatherNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B66D32B0E704C00EDEA20 /* WeatherNetwork.swift */; };
@@ -51,8 +51,7 @@
 /* Begin PBXFileReference section */
 		944CB9762B0CFA330054B481 /* WatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944CB9792B0CFA330054B481 /* WatherForecastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatherForecastApp.swift; sourceTree = "<group>"; };
-		944CB97B2B0CFA330054B481 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		944CB97E2B0CFA330054B481 /* WatherForecast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WatherForecast.xcdatamodel; sourceTree = "<group>"; };
+		944CB97B2B0CFA330054B481 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		944CB9802B0CFA330054B481 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		944CB9822B0CFA350054B481 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		944CB9842B0CFA350054B481 /* WatherForecast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatherForecast.entitlements; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		944CB9CA2B0EA5C20054B481 /* DayListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayListCard.swift; sourceTree = "<group>"; };
 		944CB9D02B0F36A50054B481 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
 		944CB9D32B0F5C780054B481 /* mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapper.swift; sourceTree = "<group>"; };
+		CE197EF22B1083F30008EBFF /* Persistance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Persistance.xcdatamodel; sourceTree = "<group>"; };
 		CE5EFB7F2B0D04BF0066E9AD /* WeatherForcastVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForcastVM.swift; sourceTree = "<group>"; };
 		CE9B66D12B0E6D0B00EDEA20 /* ParserJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserJson.swift; sourceTree = "<group>"; };
 		CE9B66D32B0E704C00EDEA20 /* WeatherNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetwork.swift; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 		CE5EFB7C2B0D04490066E9AD /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
-				944CB97B2B0CFA330054B481 /* Persistence.swift */,
-				944CB97D2B0CFA330054B481 /* WatherForecast.xcdatamodeld */,
+				CE197EF12B1083F30008EBFF /* Persistance.xcdatamodeld */,
+				944CB97B2B0CFA330054B481 /* PersistenceController.swift */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -367,9 +367,9 @@
 				CE9B66D22B0E6D0B00EDEA20 /* ParserJson.swift in Sources */,
 				CE9B66D62B0F2F4000EDEA20 /* TestScreen.swift in Sources */,
 				944CB9AF2B0E07E10054B481 /* StartScreen.swift in Sources */,
+				CE197EF32B1083F30008EBFF /* Persistance.xcdatamodeld in Sources */,
 				CE5EFB802B0D04BF0066E9AD /* WeatherForcastVM.swift in Sources */,
 				944CB9D12B0F36A50054B481 /* TemperatureView.swift in Sources */,
-				944CB97F2B0CFA330054B481 /* WatherForecast.xcdatamodeld in Sources */,
 				944CB9B62B0E80A50054B481 /* BlurCard.swift in Sources */,
 				944CB9CB2B0EA5C20054B481 /* DayListCard.swift in Sources */,
 				944CB9C72B0EA2560054B481 /* BackgroundImage.swift in Sources */,
@@ -380,7 +380,7 @@
 				944CB9B12B0E07FE0054B481 /* DetailsScreen.swift in Sources */,
 				944CB9C92B0EA5AE0054B481 /* HourListCard.swift in Sources */,
 				944CB9812B0CFA330054B481 /* ContentView.swift in Sources */,
-				944CB97C2B0CFA330054B481 /* Persistence.swift in Sources */,
+				944CB97C2B0CFA330054B481 /* PersistenceController.swift in Sources */,
 				CE9B66D42B0E704C00EDEA20 /* WeatherNetwork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -742,13 +742,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		944CB97D2B0CFA330054B481 /* WatherForecast.xcdatamodeld */ = {
+		CE197EF12B1083F30008EBFF /* Persistance.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				944CB97E2B0CFA330054B481 /* WatherForecast.xcdatamodel */,
+				CE197EF22B1083F30008EBFF /* Persistance.xcdatamodel */,
 			);
-			currentVersion = 944CB97E2B0CFA330054B481 /* WatherForecast.xcdatamodel */;
-			path = WatherForecast.xcdatamodeld;
+			currentVersion = CE197EF22B1083F30008EBFF /* Persistance.xcdatamodel */;
+			path = Persistance.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

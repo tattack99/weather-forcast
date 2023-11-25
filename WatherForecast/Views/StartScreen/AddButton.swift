@@ -59,7 +59,6 @@ struct AddFavoriteLocationView: View {
             let locationData = await viewModel.fetchLocationData(locationName: locationInput)
             await viewModel.fetchWeatherData(lat: locationData.lat, lon: locationData.lon, loactionName: locationInput)
             await MainActor.run {
-
                 showEditSheet = false
             }
         }

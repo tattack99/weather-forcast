@@ -17,8 +17,6 @@ extension LocationData {
     }
 }
 
-
-// Define the structure that matches the JSON response
 struct WeatherResponse: Codable {
     var locationName:String?
     let hourly: HourlyData

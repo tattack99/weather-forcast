@@ -11,11 +11,13 @@ struct WeatherForecastModel{
     
     private var network : WeatherNetwork
     private var parser : ParserJson
+    private var storage : PersistenceController
     
     
     init(){
         self.network = WeatherNetwork()
         self.parser = ParserJson()
+        self.storage = PersistenceController()
     }
     
     func fetchWeatherData(lat:String, lon:String) async -> WeatherResponse? {
@@ -45,6 +47,22 @@ struct WeatherForecastModel{
             print("Error fetching location data: \(error.localizedDescription)")
         }
         return nil
+    }
+    
+    func createEntity(withData: FavoritLocation) async {
+        await storage.createEntity(withData: withData)
+        let fetchData = await storage.loadEntities()
+        print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
+    }
+    
+    func loadEntities() async -> [FavoritLocation] {
+        let fetchData = await storage.loadEntities()
+        print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
+        return fetchData
+    }
+    
+    func dropDatabase() {
+        storage.clearCoreDataStore()
     }
     
 }
