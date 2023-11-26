@@ -49,6 +49,7 @@ struct DetailsScreen: View {
                     .padding(.all, 25) // This adds padding to accommodate for the notch
                 }
             }
+            .padding()
             .edgesIgnoringSafeArea(.all)
         }
     

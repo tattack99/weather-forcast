@@ -42,24 +42,36 @@ struct StartScreen: View {
             }
             else {
                 NavigationView {
-                    ScrollView {
-                        ForEach(viewModel.locations, id: \.self) { location in
-                            NavigationLink(destination: DetailsScreen(location: location)) {
-                                FavoriteLocationCard(location: location)
-                                    .padding(.bottom, 10)
+                    
+                    VStack{
+                        
+                        ScrollView {
+                            ForEach(viewModel.locations, id: \.self) { location in
+                                NavigationLink(destination: DetailsScreen(location: location)) {
+                                    FavoriteLocationCard(location: location)
+                                        .padding(.bottom, 10)
+                                }
                             }
                         }
+                        .navigationBarItems(leading: AddButton())
+                        .navigationBarItems(trailing: connected)
+                        .background(BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1).edgesIgnoringSafeArea(.all))
                     }
-                    .navigationBarItems(leading: AddButton())
-                    .background(
-                        BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1)
-                            .edgesIgnoringSafeArea(.all)
-                    )
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
             }
         }
         .onRotate { newOrientation in viewModel.deviceOrientation = newOrientation}
+    }
+    
+    var connected : some View {
+        HStack{
+            Spacer()
+            Text(viewModel.hasInternet ? "" : "Not Connected")
+                .font(.headline)
+                .foregroundColor(.red)
+            Spacer()
+        }
     }
 }
 
