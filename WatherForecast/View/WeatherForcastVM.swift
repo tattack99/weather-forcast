@@ -6,14 +6,31 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Persistance {
-    var text : String
+struct DeviceRotationViewModifier: ViewModifier {
+    let action: (UIDeviceOrientation) -> Void
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear() // Empty onAppear to ensure the modifier is active
+            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                action(UIDevice.current.orientation)
+            }
+    }
+}
+
+extension View {
+    func onRotate(action: @escaping (UIDeviceOrientation) -> Void) -> some View {
+        self.modifier(DeviceRotationViewModifier(action: action))
+    }
 }
 
 class weather_forcastVM : ObservableObject {
     @Published var locations: [FavoritLocation] = []
     @Published var hasInternet: Bool = false
+    @Published var deviceOrientation: UIDeviceOrientation = .portrait
+
 
 
     private var model : WeatherForecastModel
@@ -21,6 +38,10 @@ class weather_forcastVM : ObservableObject {
     init(){
         self.model = WeatherForecastModel()
         loadEntities()
+    }
+    
+    func updateDeviceOrientation(orientation: UIDeviceOrientation) {
+        deviceOrientation = orientation
     }
     
     func checkInternetConnection() {
@@ -71,10 +92,9 @@ class weather_forcastVM : ObservableObject {
             }
         }
     }
-    
 
     
-    func sortDayData(dayData: [DayItemData]) -> [DayItemData] {
+    private func sortDayData(dayData: [DayItemData]) -> [DayItemData] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         

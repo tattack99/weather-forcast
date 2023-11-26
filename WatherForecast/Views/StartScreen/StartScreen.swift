@@ -9,40 +9,60 @@ import SwiftUI
 
 struct StartScreen: View {
     @EnvironmentObject var viewModel: weather_forcastVM
+    @State private var selectedLocation: FavoritLocation?
 
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1)
-
-
-                VStack (alignment:.leading){
-                    HStack{
-                        Spacer()
-                        Text(viewModel.hasInternet ? "" : "Not Connected")
-                            .font(.headline)
-                            .foregroundColor(.red)
-
-                        Spacer()
-                    }
-                    
-                    AddButton()
-                    
-                    ScrollView {
-                        ForEach(viewModel.locations, id: \.self) { location in
-                            FavoriteLocationCard(location: location)
-                                .padding(.bottom, 10)
+        Group{
+            if viewModel.deviceOrientation.isPortrait {
+                NavigationView {
+                    ZStack {
+                        BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1)
+                        VStack (alignment:.leading) {
+                            HStack{
+                                Spacer()
+                                Text(viewModel.hasInternet ? "" : "Not Connected")
+                                    .font(.headline)
+                                    .foregroundColor(.red)
+                                
+                                Spacer()
+                            }
+                            AddButton()
+                            ScrollView {
+                                ForEach(viewModel.locations, id: \.self) { location in
+                                    FavoriteLocationCard(location: location)
+                                        .padding(.bottom, 10)
+                                }
+                            }
                         }
+                        .padding()
+                        .padding(.top, 30)
                     }
                 }
-                .padding()
-                .padding(.top, 30)
-
+            }
+            else {
+                NavigationView {
+                    ScrollView {
+                        ForEach(viewModel.locations, id: \.self) { location in
+                            NavigationLink(destination: DetailsScreen(location: location)) {
+                                FavoriteLocationCard(location: location)
+                                    .padding(.bottom, 10)
+                            }
+                        }
+                    }
+                    .navigationBarItems(leading: AddButton())
+                    .background(
+                        BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1)
+                            .edgesIgnoringSafeArea(.all)
+                    )
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
             }
         }
+        .onRotate { newOrientation in viewModel.deviceOrientation = newOrientation}
     }
 }
+
 
 struct StartPage_Previews: PreviewProvider {
     static var previews: some View {
