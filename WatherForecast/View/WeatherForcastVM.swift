@@ -32,17 +32,18 @@ class weather_forcastVM : ObservableObject {
 
         }
     }
-    
-    
 
-
-    func fetchLocationData(locationName:String) async -> LocationData {
-        await model.fetchLocationData(locationName: locationName) ?? LocationData.empty
-    }
-    
-    func fetchWeatherData(lat: String, lon: String, loactionName:String) async {
-        var data = await model.fetchWeatherData(lat: lat, lon: lon)
-        data?.locationName = loactionName
+    func fetchWeatherData(locationName:String) async {
+        checkInternetConnection()
+        
+        if !self.hasInternet {
+            loadEntities()
+            return
+        }
+        
+        let locationData = await model.fetchLocationData(locationName: locationName) ?? LocationData.empty
+        var data = await model.fetchWeatherData(lat: locationData.lat, lon: locationData.lon)
+        data?.locationName = locationName
         
         if let safe = data {
             // model.dropDatabase()
@@ -56,18 +57,53 @@ class weather_forcastVM : ObservableObject {
     private func loadEntities(){
         // Run loadEntities in the background
         Task {
-            let loadedLocations = await model.loadEntities()
+            
+            let unsortedLocations = await model.loadEntities()
+                    
+            // Sort the locations using the new function
+            let sortedLocations = sortFavoritLocations(unsortedLocations)
+            
+            
 
             // Switch back to the main thread to update the UI
             await MainActor.run {
-                self.locations = loadedLocations
+                self.locations = sortedLocations
             }
         }
     }
     
-    
-    
-    
-    
 
+    
+    func sortDayData(dayData: [DayItemData]) -> [DayItemData] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        return dayData.sorted {
+            guard let date1 = dateFormatter.date(from: $0.day),
+                  let date2 = dateFormatter.date(from: $1.day) else { return false }
+            return date1 < date2
+        }
+    }
+    
+    private func sortFavoritLocations(_ locations: [FavoritLocation]) -> [FavoritLocation] {
+        return locations.map { location in
+            let sortedHourData = location.hourData.sorted {
+                guard let time1 = DateFormatter.hourFormatter.date(from: $0.time),
+                      let time2 = DateFormatter.hourFormatter.date(from: $1.time) else { return false }
+                return time1 < time2
+            }
+            
+            // inspectDayData(dayData: location.dayData)
+            let sortedDayData = sortDayData(dayData: location.dayData)
+
+            return FavoritLocation(tempData: location.tempData, hourData: sortedHourData, dayData: sortedDayData)
+        }
+    }
+    
+    private func inspectDayData(dayData: [DayItemData]) {
+        for dayItem in dayData {
+            print("Day: \(dayItem.day), Temp: \(dayItem.temp), Image: \(dayItem.image)")
+        }
+    }
+    
 }

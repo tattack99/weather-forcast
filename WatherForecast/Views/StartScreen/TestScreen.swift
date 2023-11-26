@@ -17,6 +17,8 @@ struct TestScreen: View {
                 .onAppear{
                     viewModel.checkInternetConnection()
                 }
+                .font(.headline)
+                .foregroundColor(.red)
         }
     }
 }

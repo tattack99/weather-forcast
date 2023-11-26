@@ -18,7 +18,17 @@ struct StartScreen: View {
 
 
                 VStack (alignment:.leading){
+                    HStack{
+                        Spacer()
+                        Text(viewModel.hasInternet ? "" : "Not Connected")
+                            .font(.headline)
+                            .foregroundColor(.red)
+
+                        Spacer()
+                    }
+                    
                     AddButton()
+                    
                     ScrollView {
                         ForEach(viewModel.locations, id: \.self) { location in
                             FavoriteLocationCard(location: location)

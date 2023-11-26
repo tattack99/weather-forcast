@@ -64,6 +64,19 @@ extension WeatherResponse {
     }
 }
 
+extension DateFormatter {
+    static let hourFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm" // Use the format that matches your `time` string
+        return formatter
+    }()
+
+    static let dayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, d MMM" // Use the format that matches your `day` string
+        return formatter
+    }()
+}
 
 struct ParserJson {
     
