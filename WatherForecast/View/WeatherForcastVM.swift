@@ -13,6 +13,8 @@ struct Persistance {
 
 class weather_forcastVM : ObservableObject {
     @Published var locations: [FavoritLocation] = []
+    @Published var hasInternet: Bool = false
+
 
     private var model : WeatherForecastModel
 
@@ -20,14 +22,18 @@ class weather_forcastVM : ObservableObject {
         self.model = WeatherForecastModel()
         loadEntities()
     }
-   
-    func updateEntity(at index: Int, withText text: String) {
-   
-    }
+    
+    func checkInternetConnection() {
+        Task{
+            let isConnected = await model.checkInternetConnection()
+            await MainActor.run {
+                self.hasInternet = isConnected
+            }
 
-    func deleteEntity(at index: Int) {
-
+        }
     }
+    
+    
 
 
     func fetchLocationData(locationName:String) async -> LocationData {
@@ -39,7 +45,7 @@ class weather_forcastVM : ObservableObject {
         data?.locationName = loactionName
         
         if let safe = data {
-            model.dropDatabase()
+            // model.dropDatabase()
             
             let storeData = mapWeatherResponseToFavoriteLocation(weatherResponse: safe)
             await model.createEntity(withData: storeData)
@@ -58,6 +64,9 @@ class weather_forcastVM : ObservableObject {
             }
         }
     }
+    
+    
+    
     
     
 

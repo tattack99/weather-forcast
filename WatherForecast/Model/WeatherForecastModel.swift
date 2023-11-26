@@ -30,7 +30,7 @@ struct WeatherForecastModel{
             return weatherData
         }
         catch {
-            print("Error fetching weather dataaaaa \(error.localizedDescription)")
+            print("Error fetching weather data \(error.localizedDescription)")
         }
         return nil
     }
@@ -52,12 +52,12 @@ struct WeatherForecastModel{
     func createEntity(withData: FavoritLocation) async {
         await storage.createEntity(withData: withData)
         let fetchData = await storage.loadEntities()
-        print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
+        //print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
     }
     
     func loadEntities() async -> [FavoritLocation] {
         let fetchData = await storage.loadEntities()
-        print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
+        //print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
         return fetchData
     }
     
@@ -65,7 +65,13 @@ struct WeatherForecastModel{
         storage.clearCoreDataStore()
     }
     
+    func checkInternetConnection() async -> Bool {
+        return await network.checkInternetConnection()
+    }
+
 }
+    
+
         
     
 

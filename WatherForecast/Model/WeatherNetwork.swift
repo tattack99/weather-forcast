@@ -51,26 +51,18 @@ struct WeatherNetwork {
         }
     }
     
-    func checkInternetConnection(completion: @escaping (Bool) -> Void) {
-        let monitor = NWPathMonitor()
-        let queue = DispatchQueue(label: "InternetCheck")
 
-        monitor.pathUpdateHandler = { path in
-            if path.status == .satisfied {
-                print("We're connected!")
-                completion(true)
-            } else {
-                print("No connection.")
-                completion(false)
+    func checkInternetConnection() async -> Bool {
+        await withCheckedContinuation { continuation in
+            let monitor = NWPathMonitor()
+            monitor.pathUpdateHandler = { path in
+                continuation.resume(returning: path.status == .satisfied)
+                monitor.cancel()
             }
-
-            // Stop monitoring after getting the initial status
-            monitor.cancel()
+            let queue = DispatchQueue(label: "InternetConnectionMonitor")
+            monitor.start(queue: queue)
         }
-
-        monitor.start(queue: queue)
     }
-
 }
     
 
