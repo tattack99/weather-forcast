@@ -25,7 +25,7 @@ struct DayListCard: View {
             
         }
         .frame(maxHeight: 400)
-        .BlurCardStyle()
+        .BlurCardStyle(light: location.currentData.isDay)
         .padding()
     }
 }
@@ -89,7 +89,24 @@ struct DayItem : View{
                
             }
             .frame(width: 80)
+            HStack{
+                if(data.rainProp >= 10){
+                    Image(data.temp > 0 ? "rain" : "snow")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20)
+                    
+                    Text("\(data.rainProp)%")
+                        .foregroundColor(.white)
+                        .font(.custom("Exo-regular", size: 16))
+                }
+               
+            }
+            .padding(.leading, 20)
+          
             
+            Spacer()
+          
             Spacer()
             HStack{
                 Text("\(Int(data.temp))")
@@ -102,6 +119,8 @@ struct DayItem : View{
                     .padding(.leading, -8)
                     
             }
+            
+           
            
             
         }

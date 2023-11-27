@@ -22,7 +22,7 @@ struct HourListCard: View {
                 }
             }
         }
-        .BlurCardStyle()
+        .BlurCardStyle(light: location.currentData.isDay)
         .padding()
     }
 }

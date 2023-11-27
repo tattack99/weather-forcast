@@ -21,11 +21,12 @@ struct VisualEffectBlur: UIViewRepresentable {
 }
 
 struct BlurCardModifier: ViewModifier {
+    let light: Bool
     func body(content: Content) -> some View {
         content
             .padding(25)
             
-            .background(VisualEffectBlur(effect: UIBlurEffect(style: .systemUltraThinMaterialDark)))
+            .background(VisualEffectBlur(effect: UIBlurEffect(style: light ? .systemUltraThinMaterialDark : .regular)))
 //            .overlay(
 //                RoundedRectangle(cornerRadius: 40)
 //                    .stroke(
@@ -38,7 +39,8 @@ struct BlurCardModifier: ViewModifier {
 }
 
 extension View {
-    func BlurCardStyle() -> some View {
-        self.modifier(BlurCardModifier())
+
+    func BlurCardStyle(light:Bool) -> some View {
+        self.modifier(BlurCardModifier(light:light))
     }
 }
