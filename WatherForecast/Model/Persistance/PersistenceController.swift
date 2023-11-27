@@ -7,11 +7,14 @@
 
 import CoreData
 
-struct TemperatureViewData:Equatable, Hashable {
+struct CurrentItemData:Equatable, Hashable {
     var locationName: String
     var date: String
+    var cloudCover: Int16
     var sunrise: String
     var sunset: String
+    var isDay: Bool
+    var temp: Int16
 }
 struct DayItemData: Equatable,Hashable  {
     var day: String
@@ -25,7 +28,7 @@ struct HourItemData: Equatable ,Hashable {
 }
 
 struct FavoritLocation : Hashable{
-    var tempData: TemperatureViewData
+    var currentData: CurrentItemData
     var hourData: [HourItemData]
     var dayData: [DayItemData]
 }
@@ -52,7 +55,7 @@ struct PersistenceController {
             let newEntity = FavoritLocationEntity(context: context)
         
             print("Map entity")
-            newEntity.tempData = mapTemperatureViewData(data.tempData, context: context)
+            newEntity.currentData = mapTemperatureViewData(data.currentData, context: context)
             newEntity.hourData = NSSet(array: data.hourData.map { mapHourItemData($0, context: context) })
             newEntity.dayData = NSSet(array: data.dayData.map { mapDayItemData($0, context: context) })
             
@@ -82,29 +85,6 @@ struct PersistenceController {
         }
 
     }
-    
-    /*
-    func updateEntity(entity: PersistanceEntity, withData data: Persistance) {
-        entity.text = data.text
-        
-        do {
-            try entity.managedObjectContext?.save()
-        } catch {
-            print("Failed to update entity: \(error)")
-        }
-    }
-    
-    func deleteEntity(entity: PersistanceEntity) {
-        let context = container.viewContext
-        context.delete(entity)
-        
-        do {
-            try context.save()
-        } catch {
-            print("Failed to delete entity: \(error)")
-        }
-    }
-     */
 
     
     func clearCoreDataStore() {
@@ -117,12 +97,13 @@ struct PersistenceController {
             print("Error clearing Core Data store: \(error)")
         }
     }
-    private func mapTemperatureViewData(_ data: TemperatureViewData, context: NSManagedObjectContext) -> TemperatureViewDataEntity {
-        let entity = TemperatureViewDataEntity(context: context)
+    private func mapTemperatureViewData(_ data: CurrentItemData, context: NSManagedObjectContext) -> CurrentItemDataEntity {
+        let entity = CurrentItemDataEntity(context: context)
         entity.locationName = data.locationName
         entity.date = data.date
         entity.sunrise = data.sunrise
         entity.sunset = data.sunset
+        entity.isDay = data.isDay
         return entity
     }
 
@@ -143,12 +124,16 @@ struct PersistenceController {
     }
     
     private func mapToFavoriteLocation(_ entity: FavoritLocationEntity) -> FavoritLocation {
-        let tempData = TemperatureViewData(
-            locationName: entity.tempData?.locationName ?? "",
-            date: entity.tempData?.date ?? "",
-            sunrise: entity.tempData?.sunrise ?? "",
-            sunset: entity.tempData?.sunset ?? ""
+        let currentData = CurrentItemData(
+            locationName: entity.currentData?.locationName ?? "",
+            date: entity.currentData?.date ?? "",
+            cloudCover: entity.currentData?.cloudCover ?? 0,
+            sunrise: entity.currentData?.sunrise ?? "",
+            sunset:entity.currentData?.sunset ?? "",
+            isDay:entity.currentData?.isDay ?? true,
+            temp: entity.currentData?.temp ?? 0
         )
+        
         
         let hourData = (entity.hourData as? Set<HourItemDataEntity>)?.map { hourEntity in
             HourItemData(
@@ -166,7 +151,7 @@ struct PersistenceController {
             )
         } ?? []
 
-        return FavoritLocation(tempData: tempData, hourData: hourData, dayData: dayData)
+        return FavoritLocation(currentData: currentData, hourData: hourData, dayData: dayData)
     }
 
 }

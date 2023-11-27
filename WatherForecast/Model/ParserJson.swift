@@ -10,23 +10,31 @@ import Foundation
 struct LocationData: Codable {
     let lat: String
     let lon: String
+    var name:String
 }
 extension LocationData {
     static var empty: LocationData {
-        return LocationData(lat: "0", lon: "0")
+        return LocationData(lat: "0", lon: "0", name:"Nameless")
     }
 }
 
 struct WeatherResponse: Codable {
     var locationName:String?
+    let current: CurrentData
     let hourly: HourlyData
     let daily: DailyData
+}
+
+struct CurrentData: Codable {
+    var time: String
+    var cloud_cover: Int
+    var temperature_2m: Double
+    var is_day:Int
 }
 
 struct HourlyData: Codable {
     let time: [String]
     let temperature_2m: [Double]
-    let precipitation: [Double]
     let rain: [Double]
     let snowfall: [Double]
     let cloud_cover: [Int]
@@ -44,10 +52,15 @@ extension WeatherResponse {
     static var empty: WeatherResponse {
         return WeatherResponse(
             locationName:"",
+            current: CurrentData(
+                time: "",
+                cloud_cover: 0,
+                temperature_2m:0,
+                is_day: 1
+            ),
             hourly: HourlyData(
                 time: [],
                 temperature_2m: [],
-                precipitation: [],
                 rain: [],
                 snowfall: [],
                 cloud_cover: []

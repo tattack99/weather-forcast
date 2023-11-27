@@ -20,13 +20,14 @@ struct WeatherForecastModel{
         self.storage = PersistenceController()
     }
     
-    func fetchWeatherData(lat:String, lon:String) async -> WeatherResponse? {
+    func fetchWeatherData(lat:String, lon:String, locationName:String) async -> WeatherResponse? {
         var json : String = ""
         var weatherData : WeatherResponse
         
         do{
             json = try await network.fetchWeatherData(lat: lat, lon: lon)
             weatherData = try await parser.parseWeatherDataResponse(json: json)
+            weatherData.locationName = locationName;
             return weatherData
         }
         catch {
@@ -41,6 +42,7 @@ struct WeatherForecastModel{
         do{
             json = try await network.fetchCoordinatesByLocationName(locationName: locationName)
             locationData = try await parser.parseLocationDataResponse(json: json)
+            locationData.name = locationName
             return locationData
         }
         catch {
@@ -51,7 +53,7 @@ struct WeatherForecastModel{
     
     func createEntity(withData: FavoritLocation) async {
         await storage.createEntity(withData: withData)
-        let fetchData = await storage.loadEntities()
+        await storage.loadEntities()
         //print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
     }
     

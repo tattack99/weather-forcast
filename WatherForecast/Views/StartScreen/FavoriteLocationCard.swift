@@ -17,14 +17,14 @@ struct FavoriteLocationCard: View {
         NavigationLink(destination: DetailsScreen(location:location)) {
             HStack{
                 VStack(alignment: .leading){
-                    Text(location.tempData.locationName)
+                    Text(location.currentData.locationName)
                         .foregroundColor(.white)
 //                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 1)
                         .font(Font.custom("Exo-Bold", size: 30))
                         
                     Spacer()
                     HStack{
-                        Text("\(Int(location.dayData[0].temp))")
+                        Text("\(Int(location.currentData.temp))")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .font(Font.custom("Exo-Bold", size: 50))

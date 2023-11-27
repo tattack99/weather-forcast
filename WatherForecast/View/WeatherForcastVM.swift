@@ -63,8 +63,7 @@ class weather_forcastVM : ObservableObject {
         }
         
         let locationData = await model.fetchLocationData(locationName: locationName) ?? LocationData.empty
-        var data = await model.fetchWeatherData(lat: locationData.lat, lon: locationData.lon)
-        data?.locationName = locationName
+        var data = await model.fetchWeatherData(lat: locationData.lat, lon: locationData.lon, locationName: locationData.name)
         
         if let safe = data {
             // model.dropDatabase()
@@ -116,7 +115,7 @@ class weather_forcastVM : ObservableObject {
             // inspectDayData(dayData: location.dayData)
             let sortedDayData = sortDayData(dayData: location.dayData)
 
-            return FavoritLocation(tempData: location.tempData, hourData: sortedHourData, dayData: sortedDayData)
+            return FavoritLocation(currentData: location.currentData, hourData: sortedHourData, dayData: sortedDayData)
         }
     }
     

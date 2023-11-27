@@ -62,18 +62,25 @@ func mapWeatherResponseToFavoriteLocation(weatherResponse: WeatherResponse) -> F
         dayData.append(DayItemData(day: days[i], image: "sun-cloud", temp: dayTemp[i]))
     }
  
+
     
     let sunrise = weatherResponse.daily.sunrise.first ?? "No Data"
     let sunset = weatherResponse.daily.sunset.first ?? "No Data"
 
-    let firstDay = days.first ?? "No Data"
 
+    
+    let currentData = CurrentItemData(
+        locationName: weatherResponse.locationName ?? "nameless",
+        date: weatherResponse.current.time,
+        cloudCover: Int16(weatherResponse.current.cloud_cover),
+        sunrise: sunrise,
+        sunset: sunset,
+        isDay: weatherResponse.current.is_day == 1 ? true : false,
+        temp: Int16(weatherResponse.current.temperature_2m)
+    )
+    
     return FavoritLocation(
-        tempData:TemperatureViewData(
-            locationName: weatherResponse.locationName ?? "No Location",
-                    date: firstDay,
-                    sunrise: extractTime(sunrise),
-                    sunset: extractTime(sunset)),
+        currentData:currentData,
         hourData: hourData,
         dayData: dayData
     )
