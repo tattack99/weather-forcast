@@ -63,7 +63,7 @@ class weather_forcastVM : ObservableObject {
         }
         
         let locationData = await model.fetchLocationData(locationName: locationName) ?? LocationData.empty
-        var data = await model.fetchWeatherData(lat: locationData.lat, lon: locationData.lon, locationName: locationData.name)
+        let data = await model.fetchWeatherData(lat: locationData.lat, lon: locationData.lon, locationName: locationData.name)
         
         if let safe = data {
             // model.dropDatabase()

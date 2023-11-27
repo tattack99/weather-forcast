@@ -58,7 +58,7 @@ struct PersistenceController {
             newEntity.currentData = mapTemperatureViewData(data.currentData, context: context)
             newEntity.hourData = NSSet(array: data.hourData.map { mapHourItemData($0, context: context) })
             newEntity.dayData = NSSet(array: data.dayData.map { mapDayItemData($0, context: context) })
-            
+            newEntity.name = data.currentData.locationName
             do {
                 try context.save()
                 print("Created entity")
@@ -99,7 +99,6 @@ struct PersistenceController {
     }
     private func mapTemperatureViewData(_ data: CurrentItemData, context: NSManagedObjectContext) -> CurrentItemDataEntity {
         let entity = CurrentItemDataEntity(context: context)
-        entity.locationName = data.locationName
         entity.date = data.date
         entity.sunrise = data.sunrise
         entity.sunset = data.sunset
@@ -125,7 +124,7 @@ struct PersistenceController {
     
     private func mapToFavoriteLocation(_ entity: FavoritLocationEntity) -> FavoritLocation {
         let currentData = CurrentItemData(
-            locationName: entity.currentData?.locationName ?? "",
+            locationName: entity.name ?? "nameless",
             date: entity.currentData?.date ?? "",
             cloudCover: entity.currentData?.cloudCover ?? 0,
             sunrise: entity.currentData?.sunrise ?? "",

@@ -53,7 +53,8 @@ struct WeatherForecastModel{
     
     func createEntity(withData: FavoritLocation) async {
         await storage.createEntity(withData: withData)
-        await storage.loadEntities()
+        let result = await storage.loadEntities()
+        print(result)
         //print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
     }
     
