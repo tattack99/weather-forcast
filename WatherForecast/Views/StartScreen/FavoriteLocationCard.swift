@@ -12,6 +12,38 @@ import SwiftUI
 struct FavoriteLocationCard: View {
     var location: Location
   
+    var image: String {
+        get{
+            if(location.currentData.isDay){
+                if(location.currentData.cloudCover < 20){
+                    return "sun"
+                }
+                else if (location.currentData.cloudCover >= 20 && location.currentData.cloudCover < 50){
+                    return "sun-cloud"
+                }
+                else if (location.currentData.cloudCover >= 50 && location.currentData.cloudCover < 80){
+                    return "cloud-sun"
+                }
+                else{
+                    return "cloud"
+                }
+            }else {
+                if(location.currentData.cloudCover < 20){
+                    return "moon"
+                }
+                else if (location.currentData.cloudCover >= 20 && location.currentData.cloudCover < 50){
+                    return "moon-cloud"
+                }
+                else if (location.currentData.cloudCover >= 50 && location.currentData.cloudCover < 80){
+                    return "cloud-moon"
+                }
+                else{
+                    return "cloud"
+                }
+            }
+        }
+    }
+    
    
     var body: some View {
         NavigationLink(destination: DetailsScreen(location:location)) {
@@ -38,7 +70,7 @@ struct FavoriteLocationCard: View {
                 
                 Spacer()
                 
-                Image("sun-cloud") // TODO: Bases on data (cloud, sun, rain, snow) change image
+                Image(image) 
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100)

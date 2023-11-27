@@ -10,7 +10,6 @@ import Foundation
 struct LocationDataJson: Codable {
     let lat: String
     let lon: String
-    var name:String
 }
 
 struct WeatherResponse: Codable {
@@ -72,7 +71,7 @@ extension WeatherResponse {
 }
 extension LocationDataJson {
     static var empty: LocationDataJson {
-        return LocationDataJson(lat: "0", lon: "0", name:"Nameless")
+        return LocationDataJson(lat: "0", lon: "0")
     }
 }
 

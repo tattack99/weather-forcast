@@ -10,25 +10,56 @@ import SwiftUI
 
 
 struct TemperatureView: View {
-    let currentData:CurrentData
-    let locationName: String
+    let location : Location
 
+    var image: String {
+        get{
+            if(location.currentData.isDay){
+                if(location.currentData.cloudCover < 20){
+                    return "sun"
+                }
+                else if (location.currentData.cloudCover >= 20 && location.currentData.cloudCover < 50){
+                    return "sun-cloud"
+                }
+                else if (location.currentData.cloudCover >= 50 && location.currentData.cloudCover < 80){
+                    return "cloud-sun"
+                }
+                else{
+                    return "cloud"
+                }
+            }else {
+                if(location.currentData.cloudCover < 20){
+                    return "moon"
+                }
+                else if (location.currentData.cloudCover >= 20 && location.currentData.cloudCover < 50){
+                    return "moon-cloud"
+                }
+                else if (location.currentData.cloudCover >= 50 && location.currentData.cloudCover < 80){
+                    return "cloud-moon"
+                }
+                else{
+                    return "cloud"
+                }
+            }
+        }
+    }
+    
     var body: some View {
         VStack{
-            Text(locationName).font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -8)
+            Text(location.name).font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -8)
             
-            Image("sun-cloud")
+            Image(image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 120).padding(.top,5)
-            Text("Today \(currentData.date)").font(.custom("Exo-Medium", size: 18)).foregroundColor(.white).padding(.bottom, -10)
+            Text("Today \(location.currentData.date)").font(.custom("Exo-Medium", size: 18)).foregroundColor(.white).padding(.bottom, -10)
             
             HStack{
                 Spacer()
-                SunView(image:"sun-up",time:currentData.sunrise)
+                SunView(image:"sun-up",time:location.currentData.sunrise)
                 Spacer()
                 HStack{
-                    Text("\(Int(currentData.temp))")
+                    Text("\(Int(location.currentData.temp))")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .font(Font.custom("Exo-Bold", size: 100))
@@ -40,7 +71,7 @@ struct TemperatureView: View {
                         .padding(.leading, -5)
                 }
                 Spacer()
-                SunView(image:"sun-down",time:currentData.sunset)
+                SunView(image:"sun-down",time:location.currentData.sunset)
                 Spacer()
             }.padding(.top, -15)
         }

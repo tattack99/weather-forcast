@@ -175,7 +175,8 @@ struct PersistenceController {
             )
         } ?? []
 
-        return Location(name: entity.name ?? "", currentData: currentData, hourData: hourData, dayData: dayData)
+        let location = Location(name: entity.name ?? "", currentData: currentData, hourData: hourData, dayData: dayData)
+        return location
     }
 
 

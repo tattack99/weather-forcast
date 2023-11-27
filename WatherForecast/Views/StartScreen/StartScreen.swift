@@ -17,7 +17,7 @@ struct StartScreen: View {
             if viewModel.deviceOrientation.isPortrait {
                 NavigationView {
                     ZStack {
-                        BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1)
+                        BackgroundImage(imageName: isDaytime() ? "start-bg-light" : "start-bg-dark", overlayOpacity: 0.1)
                         VStack (alignment:.leading) {
                             HStack{
                                 Spacer()

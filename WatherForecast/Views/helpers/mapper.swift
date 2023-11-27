@@ -116,7 +116,10 @@ func dayName(from dateString: String) -> String {
     }
 }
 
-
+func isDaytime() -> Bool {
+    let currentHour = Calendar.current.component(.hour, from: Date())
+    return currentHour >= 7 && currentHour < 16
+}
 
 
 //

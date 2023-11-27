@@ -23,12 +23,12 @@ struct DetailsScreen: View {
     }
     private var portraitView: some View {
             ZStack {
-                BackgroundImage(imageName: "details-bg-light", overlayOpacity: 0.1)
+                BackgroundImage(imageName: location.currentData.isDay ? "details-bg-light" : "details-bg-dark", overlayOpacity: 0.1)
                 ScrollView(showsIndicators: false) {
                     VStack {
-                        TemperatureView(currentData: location.currentData, locationName: location.name)
-                        HourListCard(hourlyData: location.hourData).padding(.vertical, -20)
-                        DayListCard(dailyData: location.dayData).padding(.bottom, 30)
+                        TemperatureView(location:location)
+                        HourListCard(location:location).padding(.vertical, -20)
+                        DayListCard(location:location).padding(.bottom, 30)
                     }
                 }
             }
@@ -42,9 +42,9 @@ struct DetailsScreen: View {
                     .position(backgroundPosition)
                 ScrollView(showsIndicators: false) {
                     VStack {
-                        TemperatureView(currentData: location.currentData, locationName: location.name)
-                        HourListCard(hourlyData: location.hourData).padding(.vertical, -20)
-                        DayListCard(dailyData: location.dayData).padding(.bottom, 30)
+                        TemperatureView(location: location)
+                        HourListCard(location: location).padding(.vertical, -20)
+                        DayListCard(location: location).padding(.bottom, 30)
                     }
                     .padding(.all, 25) // This adds padding to accommodate for the notch
                 }

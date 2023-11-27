@@ -23,6 +23,7 @@ struct WeatherNetwork {
             throw NetworkError.invalidResponse
         }
         
+        print(data)
         if let dataString = String(data: data, encoding: .utf8) {
             return dataString
         }

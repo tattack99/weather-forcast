@@ -10,14 +10,14 @@ import SwiftUI
 
     
 struct DayListCard: View {
-    let dailyData: [DayData]
+    let location : Location
     var body: some View {
         VStack(alignment: .leading){
             Text("Daily forecast").foregroundColor(.white).font(.custom("Exo-regular", size: 14)).padding(.bottom, 5)
             
             VStack(spacing: 20) {
-                ForEach(dailyData, id: \.self) { day in
-                    DayItem(data: day)
+                ForEach(location.dayData, id: \.self) { day in
+                    DayItem(data: day, isDay: location.currentData.isDay)
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -34,6 +34,42 @@ struct DayListCard: View {
 
 struct DayItem : View{
     let data : DayData
+    let isDay: Bool
+    
+    var image: String {
+        get{
+            if(isDay){
+                if(data.cloudCover < 20){
+                    return "sun"
+                }
+                else if (data.cloudCover  >= 20 && data.cloudCover  < 50){
+                    return "sun-cloud"
+                }
+                else if (data.cloudCover  >= 50 && data.cloudCover < 80){
+                    return "cloud-sun"
+                }
+                else{
+                    return "cloud"
+                }
+            } else {
+                if(data.cloudCover < 20){
+                    return "moon"
+                }
+                else if (data.cloudCover  >= 20 && data.cloudCover  < 50){
+                    return "moon-cloud"
+                }
+                else if (data.cloudCover  >= 50 && data.cloudCover < 80){
+                    return "cloud-moon"
+                }
+                else{
+                    return "cloud"
+                }
+            }
+            
+                
+        }
+    }
+    
     var body: some View {
         HStack{
             HStack{
@@ -43,7 +79,7 @@ struct DayItem : View{
                     .font(.custom("Exo-regular", size: 16))
                 
                 Spacer()
-                Image("sun-cloud")
+                Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30)

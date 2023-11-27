@@ -38,10 +38,10 @@ struct WeatherForecastModel{
     func fetchLocationData(locationName:String) async -> LocationDataJson? {
         var json : String = ""
         var locationData : LocationDataJson
+        print(locationName)
         do{
             json = try await network.fetchCoordinatesByLocationName(locationName: locationName)
             locationData = try await parser.parseLocationDataResponse(json: json)
-            locationData.name = locationName
             return locationData
         }
         catch {
@@ -52,7 +52,6 @@ struct WeatherForecastModel{
     
     func createEntity(withData: Location) async {
         await storage.createEntity(withData: withData)
-        let result = await storage.loadEntities()
         //print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
     }
     

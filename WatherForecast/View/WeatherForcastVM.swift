@@ -63,7 +63,7 @@ class weather_forcastVM : ObservableObject {
         }
         
         let locationData = await model.fetchLocationData(locationName: locationName) ?? LocationDataJson.empty
-        let data = await model.fetchWeatherData(lat: locationData.lat, lon: locationData.lon, locationName: locationData.name)
+        let data = await model.fetchWeatherData(lat: locationData.lat, lon: locationData.lon, locationName: locationName)
         
         if let safe = data {
             // model.dropDatabase()
@@ -79,15 +79,8 @@ class weather_forcastVM : ObservableObject {
         Task {
             
             let unsortedLocations = await model.loadEntities()
-                    
-            // Sort the locations using the new function
-            let sortedLocations = sortFavoriteLocations(unsortedLocations)
-            
-            
-
-            // Switch back to the main thread to update the UI
             await MainActor.run {
-                self.locations = sortedLocations
+                self.locations = sortFavoriteLocations(unsortedLocations)
             }
         }
     }
