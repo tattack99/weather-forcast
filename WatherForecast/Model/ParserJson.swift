@@ -7,73 +7,72 @@
 
 import Foundation
 
-struct LocationData: Codable {
+struct LocationDataJson: Codable {
     let lat: String
     let lon: String
     var name:String
 }
-extension LocationData {
-    static var empty: LocationData {
-        return LocationData(lat: "0", lon: "0", name:"Nameless")
-    }
-}
 
 struct WeatherResponse: Codable {
-    var locationName:String?
-    let current: CurrentData
-    let hourly: HourlyData
-    let daily: DailyData
+    let current: CurrentDataJson
+    let hourly: HourlyDataJson
+    let daily: DailyDataJson
 }
 
-struct CurrentData: Codable {
-    var time: String
-    var cloud_cover: Int
-    var temperature_2m: Double
-    var is_day:Int
+struct CurrentDataJson: Codable {
+    let time: String
+    let cloud_cover: Int
+    let precipitation: Double
+    let temperature_2m: Double
+    let is_day:Int
 }
 
-struct HourlyData: Codable {
+struct HourlyDataJson: Codable {
     let time: [String]
     let temperature_2m: [Double]
-    let rain: [Double]
-    let snowfall: [Double]
+    let precipitation: [Double]
     let cloud_cover: [Int]
 }
 
-struct DailyData: Codable {
+struct DailyDataJson: Codable {
     let time: [String]
     let temperature_2m_max: [Double]
+    let temperature_2m_min: [Double]
     let sunrise: [String]
     let sunset: [String]
-    let rain_sum: [Double]
-    let snowfall_sum: [Double]
+    let precipitation_sum: [Double]
+
 }
 extension WeatherResponse {
     static var empty: WeatherResponse {
         return WeatherResponse(
-            locationName:"",
-            current: CurrentData(
+            current: CurrentDataJson(
                 time: "",
                 cloud_cover: 0,
+                precipitation: 0.0,
                 temperature_2m:0,
                 is_day: 1
             ),
-            hourly: HourlyData(
+            hourly: HourlyDataJson(
                 time: [],
                 temperature_2m: [],
-                rain: [],
-                snowfall: [],
+                precipitation: [],
                 cloud_cover: []
             ),
-            daily: DailyData(
+            daily: DailyDataJson(
                 time: [],
                 temperature_2m_max: [],
+                temperature_2m_min: [],
                 sunrise: [],
                 sunset: [],
-                rain_sum: [],
-                snowfall_sum: []
+                precipitation_sum: []
             )
         )
+    }
+}
+extension LocationDataJson {
+    static var empty: LocationDataJson {
+        return LocationDataJson(lat: "0", lon: "0", name:"Nameless")
     }
 }
 
@@ -112,16 +111,16 @@ struct ParserJson {
     }
     
     
-    func parseLocationDataResponse(json: String) async throws -> LocationData {
+    func parseLocationDataResponse(json: String) async throws -> LocationDataJson {
         guard let jsonData = json.data(using: .utf8) else {
             throw ParserError.invalidStringEncoding
         }
         
-        var locationData : [LocationData]
+        var locationData : [LocationDataJson]
         
         let decoder = JSONDecoder()
         do {
-            locationData = try decoder.decode([LocationData].self, from: jsonData)
+            locationData = try decoder.decode([LocationDataJson].self, from: jsonData)
             
         } catch {
             throw ParserError.couldNotParse

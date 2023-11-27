@@ -10,14 +10,14 @@ import SwiftUI
 
 
 struct FavoriteLocationCard: View {
-    var location: FavoritLocation
+    var location: Location
   
    
     var body: some View {
         NavigationLink(destination: DetailsScreen(location:location)) {
             HStack{
                 VStack(alignment: .leading){
-                    Text(location.currentData.locationName)
+                    Text(location.name)
                         .foregroundColor(.white)
 //                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 1)
                         .font(Font.custom("Exo-Bold", size: 30))

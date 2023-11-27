@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailsScreen: View {
     @EnvironmentObject var viewModel: weather_forcastVM
-    let location: FavoritLocation
+    let location: Location
     
     @ViewBuilder
     var body: some View {
@@ -26,7 +26,7 @@ struct DetailsScreen: View {
                 BackgroundImage(imageName: "details-bg-light", overlayOpacity: 0.1)
                 ScrollView(showsIndicators: false) {
                     VStack {
-                        TemperatureView(currentData: location.currentData)
+                        TemperatureView(currentData: location.currentData, locationName: location.name)
                         HourListCard(hourlyData: location.hourData).padding(.vertical, -20)
                         DayListCard(dailyData: location.dayData).padding(.bottom, 30)
                     }
@@ -42,7 +42,7 @@ struct DetailsScreen: View {
                     .position(backgroundPosition)
                 ScrollView(showsIndicators: false) {
                     VStack {
-                        TemperatureView(currentData: location.currentData)
+                        TemperatureView(currentData: location.currentData, locationName: location.name)
                         HourListCard(hourlyData: location.hourData).padding(.vertical, -20)
                         DayListCard(dailyData: location.dayData).padding(.bottom, 30)
                     }

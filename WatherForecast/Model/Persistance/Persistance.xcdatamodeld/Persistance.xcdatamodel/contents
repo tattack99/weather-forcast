@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F66" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CurrentItemDataEntity" representedClassName="CurrentItemDataEntity" syncable="YES" codeGenerationType="class">
+    <entity name="CurrentDataEntity" representedClassName="CurrentDataEntity" syncable="YES" codeGenerationType="class">
         <attribute name="cloudCover" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="isDay" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="sunrise" optional="YES" attributeType="String"/>
         <attribute name="sunset" optional="YES" attributeType="String"/>
         <attribute name="temp" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoritLocationEntity" inverseName="currentData" inverseEntity="FavoritLocationEntity"/>
-    </entity>
-    <entity name="DayItemDataEntity" representedClassName="DayItemDataEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="day" optional="YES" attributeType="String"/>
-        <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="temp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoritLocationEntity" inverseName="dayData" inverseEntity="FavoritLocationEntity"/>
-    </entity>
-    <entity name="FavoritLocationEntity" representedClassName="FavoritLocationEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="currentData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CurrentItemDataEntity" inverseName="location" inverseEntity="CurrentItemDataEntity"/>
-        <relationship name="dayData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayItemDataEntity" inverseName="location" inverseEntity="DayItemDataEntity"/>
-        <relationship name="hourData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HourItemDataEntity" inverseName="location" inverseEntity="HourItemDataEntity"/>
-    </entity>
-    <entity name="HourItemDataEntity" representedClassName="HourItemDataEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="temp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="String"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoritLocationEntity" inverseName="hourData" inverseEntity="FavoritLocationEntity"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocationEntity" inverseName="currentData" inverseEntity="LocationEntity"/>
+    </entity>
+    <entity name="DayDataEntity" representedClassName="DayDataEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="cloudCover" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dayName" optional="YES" attributeType="String"/>
+        <attribute name="rainProp" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temp" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocationEntity" inverseName="dayData" inverseEntity="LocationEntity"/>
+    </entity>
+    <entity name="HourDataEntity" representedClassName="HourDataEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="cloudCover" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rainProp" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temp" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocationEntity" inverseName="hourData" inverseEntity="LocationEntity"/>
+    </entity>
+    <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="currentData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CurrentDataEntity" inverseName="location" inverseEntity="CurrentDataEntity"/>
+        <relationship name="dayData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayDataEntity" inverseName="location" inverseEntity="DayDataEntity"/>
+        <relationship name="hourData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HourDataEntity" inverseName="location" inverseEntity="HourDataEntity"/>
     </entity>
 </model>

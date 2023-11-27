@@ -31,59 +31,75 @@ func extractTime(_ dateString: String) -> String {
     
     return "NO TIME"
 }
-func mapWeatherResponseToFavoriteLocation(weatherResponse: WeatherResponse) -> FavoritLocation {
-    // HourItemData
-    var hourData: [HourItemData] = []
+
+func extractHourDataFromWeatherResponse(weatherResponse: WeatherResponse) -> [HourData] {
+    var hourData: [HourData] = []
     var hours: [String] = []
-    var hourTemp : [Double] = []
-    print(weatherResponse)
+    var hourTemp : [Int] = []
+    var hourRainProp: [Int] = []
+    var hourCloudCover: [Int] = []
     
     for (_ ,time) in weatherResponse.hourly.time.enumerated() {
         hours.append(extractTime(time))
     }
     for (_ ,temp) in weatherResponse.hourly.temperature_2m.enumerated() {
-        hourTemp.append(temp)
+        hourTemp.append(Int(temp))
     }
+    for (_ ,cloud) in weatherResponse.hourly.cloud_cover.enumerated() {
+        hourCloudCover.append(Int(cloud))
+    }
+    for (_ ,rain) in weatherResponse.hourly.precipitation.enumerated() {
+        hourRainProp.append(Int(rain))
+    }
+    
     for i in 0..<min(24, hours.count, hourTemp.count) {
-        hourData.append(HourItemData(time: hours[i], image: "sun-cloud", temp: hourTemp[i]))
+        hourData.append(
+            HourData(
+                time: hours[i],
+                cloudCover: hourCloudCover[i],
+                rainProp: hourRainProp[i],
+                temp: hourTemp[i])
+        )
     }
-    
-    
-    var dayData: [DayItemData] = []
-    var days: [String] = []
-    var dayTemp : [Double] = []
-    for (_ ,time) in weatherResponse.daily.time.enumerated() {
-        days.append(time)
+    return hourData
+}
+func extractDayDataFromWeatherResponse(weatherResponse: WeatherResponse) -> [DayData] {
+    var dayData: [DayData] = []
+    for i in 0..<min(7, weatherResponse.daily.time.count) {
+        let dayName = weatherResponse.daily.time[i]
+        let temp = Int(weatherResponse.daily.temperature_2m_max[i])
+        let cloudCover = Int(weatherResponse.hourly.cloud_cover[i*24])
+        let rainProp = Int(weatherResponse.daily.precipitation_sum[i])
+        dayData.append(DayData(dayName: dayName, cloudCover: cloudCover, rainProp: rainProp, temp: temp))
     }
-    for (_ ,temp) in weatherResponse.daily.temperature_2m_max.enumerated() {
-        dayTemp.append(temp)
-    }
-    for i in 0..<min(7, days.count, dayTemp.count) {
-        dayData.append(DayItemData(day: days[i], image: "sun-cloud", temp: dayTemp[i]))
-    }
- 
+    return dayData
+}
 
-    
-    let sunrise = weatherResponse.daily.sunrise.first ?? "No Data"
-    let sunset = weatherResponse.daily.sunset.first ?? "No Data"
-
-
-    
-    let currentData = CurrentItemData(
-        locationName: weatherResponse.locationName ?? "nameless",
-        date: weatherResponse.current.time,
+func extractCurrentDataFromWeatherResponse(weatherResponse: WeatherResponse) -> CurrentData {
+    let currentData = CurrentData(
+        date: extractDate(weatherResponse.current.time),
+        time: extractTime(weatherResponse.current.time),
         cloudCover: Int16(weatherResponse.current.cloud_cover),
-        sunrise: sunrise,
-        sunset: sunset,
-        isDay: weatherResponse.current.is_day == 1 ? true : false,
+        sunrise: extractTime(weatherResponse.daily.sunrise.first ?? "") ,
+        sunset: extractTime(weatherResponse.daily.sunset.first ?? "") ,
+        isDay: weatherResponse.current.is_day == 1,
         temp: Int16(weatherResponse.current.temperature_2m)
     )
+    return currentData;
+}
+func mapWeatherResponseToLocation(weatherResponse: WeatherResponse, locationName:String) -> Location {
+
+    let hourData: [HourData] = extractHourDataFromWeatherResponse(weatherResponse: weatherResponse)
+    let dayData: [DayData] = extractDayDataFromWeatherResponse(weatherResponse: weatherResponse)
+    let currentData = extractCurrentDataFromWeatherResponse(weatherResponse: weatherResponse)
     
-    return FavoritLocation(
-        currentData:currentData,
+    return Location(
+        name: locationName,
+        currentData: currentData,
         hourData: hourData,
         dayData: dayData
     )
+
 }
 
 func dayName(from dateString: String) -> String {

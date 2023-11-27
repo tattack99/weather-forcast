@@ -7,30 +7,33 @@
 
 import CoreData
 
-struct CurrentItemData:Equatable, Hashable {
-    var locationName: String
+struct CurrentData:Equatable, Hashable {
     var date: String
+    var time: String
     var cloudCover: Int16
     var sunrise: String
     var sunset: String
     var isDay: Bool
     var temp: Int16
 }
-struct DayItemData: Equatable,Hashable  {
-    var day: String
-    var image: String
-    var temp: Double
+struct DayData: Equatable,Hashable  {
+    var dayName: String
+    var cloudCover: Int
+    var rainProp: Int
+    var temp: Int
 }
-struct HourItemData: Equatable ,Hashable {
+struct HourData: Equatable ,Hashable {
     var time: String
-    var image: String
-    var temp: Double
+    var cloudCover: Int
+    var rainProp: Int
+    var temp: Int
 }
 
-struct FavoritLocation : Hashable{
-    var currentData: CurrentItemData
-    var hourData: [HourItemData]
-    var dayData: [DayItemData]
+struct Location : Hashable{
+    var name: String
+    var currentData: CurrentData
+    var hourData: [HourData]
+    var dayData: [DayData]
 }
 
 struct PersistenceController {
@@ -48,17 +51,17 @@ struct PersistenceController {
         }
     }
     
-    func createEntity(withData data: FavoritLocation) async {
+    func createEntity(withData data: Location) async {
         print("Inside create entity")
         let context = container.newBackgroundContext()
         return await context.perform {
-            let newEntity = FavoritLocationEntity(context: context)
+            let newEntity = LocationEntity(context: context)
         
             print("Map entity")
-            newEntity.currentData = mapTemperatureViewData(data.currentData, context: context)
-            newEntity.hourData = NSSet(array: data.hourData.map { mapHourItemData($0, context: context) })
-            newEntity.dayData = NSSet(array: data.dayData.map { mapDayItemData($0, context: context) })
-            newEntity.name = data.currentData.locationName
+            newEntity.currentData = mapToCurrentDataEntity(data.currentData, context: context)
+            newEntity.hourData = NSSet(array: data.hourData.map { mapToHourDataEntity($0, context: context) })
+            newEntity.dayData = NSSet(array: data.dayData.map { mapToDayDataEntity($0, context: context) })
+            newEntity.name = data.name
             do {
                 try context.save()
                 print("Created entity")
@@ -67,16 +70,17 @@ struct PersistenceController {
             }
         }
     }
+
     
     
-    func loadEntities() async -> [FavoritLocation] {
+    func loadEntities() async -> [Location] {
         let context = container.newBackgroundContext()
         return await context.perform{
-            let fetchRequest: NSFetchRequest<FavoritLocationEntity> = FavoritLocationEntity.fetchRequest()
+            let fetchRequest: NSFetchRequest<LocationEntity> = LocationEntity.fetchRequest()
 
             do {
                 let entities = try context.fetch(fetchRequest)
-                return entities.map { mapToFavoriteLocation($0) }
+                return entities.map { mapToLocation($0) }
             } catch {
                 print("Failed to fetch entities: \(error)")
                 return []
@@ -97,60 +101,82 @@ struct PersistenceController {
             print("Error clearing Core Data store: \(error)")
         }
     }
-    private func mapTemperatureViewData(_ data: CurrentItemData, context: NSManagedObjectContext) -> CurrentItemDataEntity {
-        let entity = CurrentItemDataEntity(context: context)
+    private func mapToCurrentDataEntity(_ data: CurrentData, context: NSManagedObjectContext) -> CurrentDataEntity {
+        let entity = CurrentDataEntity(context: context)
         entity.date = data.date
+        entity.time = data.time
         entity.sunrise = data.sunrise
         entity.sunset = data.sunset
         entity.isDay = data.isDay
+        entity.cloudCover = data.cloudCover
+        entity.temp = data.temp
         return entity
     }
 
-    private func mapHourItemData(_ data: HourItemData, context: NSManagedObjectContext) -> HourItemDataEntity {
-        let entity = HourItemDataEntity(context: context)
+    private func mapToHourDataEntity(_ data: HourData, context: NSManagedObjectContext) -> HourDataEntity {
+        let entity = HourDataEntity(context: context)
         entity.time = data.time
-        entity.image = data.image
-        entity.temp = data.temp
+        entity.cloudCover = Int16(data.cloudCover)
+        entity.rainProp = Int16(data.rainProp)
+        entity.temp = Int16(data.temp)
         return entity
     }
 
-    private func mapDayItemData(_ data: DayItemData, context: NSManagedObjectContext) -> DayItemDataEntity {
-        let entity = DayItemDataEntity(context: context)
-        entity.day = data.day
-        entity.image = data.image
-        entity.temp = data.temp
+    private func mapToDayDataEntity(_ data: DayData, context: NSManagedObjectContext) -> DayDataEntity {
+        let entity = DayDataEntity(context: context)
+        entity.dayName = data.dayName
+        entity.cloudCover = Int16(data.cloudCover)
+        entity.rainProp = Int16(data.rainProp)
+        entity.temp = Int16(data.temp)
+        return entity
+    }
+    private func mapToLocationEntity(_ data: Location, context: NSManagedObjectContext) -> LocationEntity {
+        let entity = LocationEntity(context: context)
+        entity.name = data.name
+        entity.currentData = mapToCurrentDataEntity(data.currentData, context:context)
+        
+        let dayDataEntities = data.dayData.map { mapToDayDataEntity($0, context: context) }
+        entity.dayData = NSSet(array: dayDataEntities)
+
+        let hourDataEntities = data.hourData.map { mapToHourDataEntity($0, context: context) }
+        entity.hourData = NSSet(array: hourDataEntities)
+        
         return entity
     }
     
-    private func mapToFavoriteLocation(_ entity: FavoritLocationEntity) -> FavoritLocation {
-        let currentData = CurrentItemData(
-            locationName: entity.name ?? "nameless",
+    
+    
+    private func mapToLocation(_ entity: LocationEntity) -> Location {
+        let currentData = CurrentData(
             date: entity.currentData?.date ?? "",
+            time: entity.currentData?.time ?? "",
             cloudCover: entity.currentData?.cloudCover ?? 0,
             sunrise: entity.currentData?.sunrise ?? "",
-            sunset:entity.currentData?.sunset ?? "",
-            isDay:entity.currentData?.isDay ?? true,
+            sunset: entity.currentData?.sunset ?? "",
+            isDay: entity.currentData?.isDay ?? true,
             temp: entity.currentData?.temp ?? 0
         )
-        
-        
-        let hourData = (entity.hourData as? Set<HourItemDataEntity>)?.map { hourEntity in
-            HourItemData(
+
+        let hourData = (entity.hourData as? Set<HourDataEntity>)?.map { hourEntity in
+            HourData(
                 time: hourEntity.time ?? "",
-                image: hourEntity.image ?? "",
-                temp: hourEntity.temp
-            )
-        } ?? []
-        
-        let dayData = (entity.dayData as? Set<DayItemDataEntity>)?.map { dayEntity in
-            DayItemData(
-                day: dayEntity.day ?? "",
-                image: dayEntity.image ?? "",
-                temp: dayEntity.temp
+                cloudCover: Int(hourEntity.cloudCover),
+                rainProp: Int(hourEntity.rainProp),
+                temp: Int(hourEntity.temp)
             )
         } ?? []
 
-        return FavoritLocation(currentData: currentData, hourData: hourData, dayData: dayData)
+        let dayData = (entity.dayData as? Set<DayDataEntity>)?.map { dayEntity in
+            DayData(
+                dayName: dayEntity.dayName ?? "",
+                cloudCover: Int(dayEntity.cloudCover),
+                rainProp: Int(dayEntity.rainProp),
+                temp: Int(dayEntity.temp)
+            )
+        } ?? []
+
+        return Location(name: entity.name ?? "", currentData: currentData, hourData: hourData, dayData: dayData)
     }
+
 
 }

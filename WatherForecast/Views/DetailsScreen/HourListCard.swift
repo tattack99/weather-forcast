@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HourListCard: View {
-    let hourlyData : [HourItemData]
+    let hourlyData : [HourData]
     
     var body: some View {
         
@@ -30,14 +30,14 @@ struct HourListCard: View {
 
 
 struct HourItem : View{
-    let data : HourItemData
+    let data : HourData
     var body: some View {
         VStack{
             Text(data.time)
                 .foregroundColor(.white)
                 .font(.custom("Exo-regular", size: 16))
             
-            Image(data.image)
+            Image("cloud-sun")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 30)

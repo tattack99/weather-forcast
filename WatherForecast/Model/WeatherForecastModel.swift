@@ -27,7 +27,6 @@ struct WeatherForecastModel{
         do{
             json = try await network.fetchWeatherData(lat: lat, lon: lon)
             weatherData = try await parser.parseWeatherDataResponse(json: json)
-            weatherData.locationName = locationName;
             return weatherData
         }
         catch {
@@ -36,9 +35,9 @@ struct WeatherForecastModel{
         return nil
     }
     
-    func fetchLocationData(locationName:String) async -> LocationData? {
+    func fetchLocationData(locationName:String) async -> LocationDataJson? {
         var json : String = ""
-        var locationData : LocationData
+        var locationData : LocationDataJson
         do{
             json = try await network.fetchCoordinatesByLocationName(locationName: locationName)
             locationData = try await parser.parseLocationDataResponse(json: json)
@@ -51,14 +50,13 @@ struct WeatherForecastModel{
         return nil
     }
     
-    func createEntity(withData: FavoritLocation) async {
+    func createEntity(withData: Location) async {
         await storage.createEntity(withData: withData)
         let result = await storage.loadEntities()
-        print(result)
         //print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
     }
     
-    func loadEntities() async -> [FavoritLocation] {
+    func loadEntities() async -> [Location] {
         let fetchData = await storage.loadEntities()
         //print("count:\(fetchData.count), locationName: \(fetchData.first?.tempData.locationName) dayData.Count:\(fetchData.first?.dayData.count), hourData.Count:\(fetchData.first?.hourData.count)")
         return fetchData

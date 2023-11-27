@@ -10,11 +10,12 @@ import SwiftUI
 
 
 struct TemperatureView: View {
-    let currentData:CurrentItemData
+    let currentData:CurrentData
+    let locationName: String
 
     var body: some View {
         VStack{
-            Text(currentData.locationName).font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -8)
+            Text(locationName).font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -8)
             
             Image("sun-cloud")
                 .resizable()

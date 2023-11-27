@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StartScreen: View {
     @EnvironmentObject var viewModel: weather_forcastVM
-    @State private var selectedLocation: FavoritLocation?
+    @State private var selectedLocation: Location?
 
 
     var body: some View {

@@ -10,7 +10,7 @@ import SwiftUI
 
     
 struct DayListCard: View {
-    let dailyData: [DayItemData]
+    let dailyData: [DayData]
     var body: some View {
         VStack(alignment: .leading){
             Text("Daily forecast").foregroundColor(.white).font(.custom("Exo-regular", size: 14)).padding(.bottom, 5)
@@ -33,17 +33,17 @@ struct DayListCard: View {
 
 
 struct DayItem : View{
-    let data : DayItemData
+    let data : DayData
     var body: some View {
         HStack{
             HStack{
                 
-                Text(dayName(from:data.day))
+                Text(dayName(from:data.dayName))
                     .foregroundColor(.white)
                     .font(.custom("Exo-regular", size: 16))
                 
                 Spacer()
-                Image(data.image)
+                Image("sun-cloud")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30)
