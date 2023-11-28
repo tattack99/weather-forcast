@@ -52,7 +52,8 @@ struct FavoriteLocationCard: View {
                     Text(location.name)
                         .foregroundColor(.white)
 //                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 1)
-                        .font(Font.custom("Exo-Bold", size: 30))
+                        .bold()
+                        .font(.system(.largeTitle))
                         
                     Spacer()
                     HStack{

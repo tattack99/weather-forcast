@@ -17,7 +17,7 @@ struct AddButton: View {
                 .foregroundColor(.white)
                 .font(.title2)
                 .padding(10)
-                .background(VisualEffectBlur(effect: UIBlurEffect(style: .regular )))
+                .background(VisualEffectBlur(effect: UIBlurEffect(style: .systemUltraThinMaterialDark )))
                 .cornerRadius(15)
         }
         .sheet(isPresented: $showEditSheet) {

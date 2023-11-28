@@ -30,7 +30,7 @@ class WeatherForcastVM : ObservableObject {
     @Published var locations: [Location] = []
     @Published var hasInternet: Bool = false
     @Published var deviceOrientation: UIDeviceOrientation = .portrait
-
+    @State var isLoaded: Bool = false
 
 
     private var model : WeatherForecastModel
@@ -40,27 +40,28 @@ class WeatherForcastVM : ObservableObject {
     }
     
     func handleEntities() {
-
-        Task{
+        Task {
             let isConnected = await model.checkInternetConnection()
-            if(isConnected){
+            if isConnected {
                 print("isConnected")
-                loadEntities()
-                let locationNames = locations.map{ $0.name }
-                print(locationNames)
-                if(locationNames.count > 0){
-                    dropStorage()
-                    for name in locationNames {
-                        await fetchWeatherData(locationName: name)
+                let entitiesLoaded = await loadEntities()
+
+                if entitiesLoaded {
+                    let locationNames = locations.map { $0.name }
+                    print(locationNames)
+                    if locationNames.count > 0 {
+                        dropStorage()
+                        for name in locationNames {
+                            await fetchWeatherData(locationName: name)
+                        }
                     }
                 }
+            } else {
                 
-            }else {
-                print("Not connected")
-                loadEntities()
+                let success = await loadEntities()
+                print("Not connected \(success)")
             }
         }
-
     }
     
     func updateDeviceOrientation(orientation: UIDeviceOrientation) {
@@ -88,19 +89,17 @@ class WeatherForcastVM : ObservableObject {
             
             let storeData = mapWeatherResponseToLocation(weatherResponse: safe, locationName: locationName)
             await model.createEntity(withData: storeData)
-            loadEntities()
+            let success = await loadEntities()
+            print("\(success)")
         }
     }
     
-    private func loadEntities(){
-        // Run loadEntities in the background
-        Task {
-            
-            let unsortedLocations = await model.loadEntities()
-            await MainActor.run {
-                self.locations = sortFavoriteLocations(unsortedLocations)
-            }
+    private func loadEntities() async -> Bool {
+        let unsortedLocations = await model.loadEntities()
+        await MainActor.run {
+            self.locations = sortFavoriteLocations(unsortedLocations)
         }
+        return !unsortedLocations.isEmpty
     }
     
     private func dropStorage(){

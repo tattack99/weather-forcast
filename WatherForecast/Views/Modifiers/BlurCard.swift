@@ -26,7 +26,7 @@ struct BlurCardModifier: ViewModifier {
         content
             .padding(20)
             
-            .background(VisualEffectBlur(effect: UIBlurEffect(style: isDay ? .regular: .systemUltraThinMaterialDark)))
+            .background(VisualEffectBlur(effect: UIBlurEffect(style: isDay ? .regular : .systemUltraThinMaterialDark)))
 
             .cornerRadius(30)
     }

@@ -48,7 +48,10 @@ struct TemperatureView: View {
         VStack{
             
          
-            Text(location.name).font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -6)
+            Text(location.name)
+                .bold()
+                .foregroundColor(.white)
+                .font(.system(.largeTitle))
             Image(image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)

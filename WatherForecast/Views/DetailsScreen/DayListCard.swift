@@ -15,7 +15,7 @@ struct DayListCard: View {
         VStack(alignment: .leading){
             Text("Daily forecast").foregroundColor(.white).font(.custom("Exo-regular", size: 14)).padding(.bottom, 3)
             
-            VStack(spacing: 20) {
+            VStack(spacing: 10) {
                 ForEach(location.dayData, id: \.self) { day in
                     DayItem(data: day, isDay: location.currentData.isDay)
                         .frame(maxWidth: .infinity)
@@ -89,6 +89,7 @@ struct DayItem : View{
                
             }
             .frame(width: 80)
+            
             HStack{
                 if(data.rainProp >= 10){
                     Image(data.temp > 0 ? "rain" : "snow")
@@ -102,7 +103,7 @@ struct DayItem : View{
                 }
                
             }
-            .padding(.leading, 10)
+          
           
             
             Spacer()
@@ -124,10 +125,11 @@ struct DayItem : View{
            
             
         }
+        .padding(.bottom, 5)
         .overlay(
             Rectangle()
-                .frame(height: 1)
-                .foregroundColor(.white.opacity(0.5)),
+                .frame(height: 0.5)
+                .foregroundColor(.white.opacity(0.3)),
             alignment: .bottom
         )
 

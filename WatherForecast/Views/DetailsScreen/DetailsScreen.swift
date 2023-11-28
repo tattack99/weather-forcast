@@ -13,7 +13,7 @@ struct DetailsScreen: View {
     
     var img: String {
         get{
-            return location.currentData.isDay ? "bg-light" : "bg-dark"
+            return location.currentData.isDay ? "bg-light-new" : "bg-dark-new"
         }
     }
     

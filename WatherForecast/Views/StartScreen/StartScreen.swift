@@ -13,7 +13,7 @@ struct StartScreen: View {
     
     var img: String {
         get{
-            return isDaytime() ? "bg-light" : "bg-dark"
+            return isDaytime() ? "bg-light-new" : "bg-dark-new"
         }
     }
 
