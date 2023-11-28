@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TestScreen: View {
-    @EnvironmentObject var viewModel: weather_forcastVM
+    @EnvironmentObject var viewModel: WeatherForcastVM
 
     var body: some View {
         VStack {
@@ -27,6 +27,6 @@ struct TestScreen: View {
 struct TestScreen_Previews: PreviewProvider {
     static var previews: some View {
         TestScreen()
-            .environmentObject(weather_forcastVM())
+            .environmentObject(WeatherForcastVM())
     }
 }

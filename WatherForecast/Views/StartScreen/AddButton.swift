@@ -31,7 +31,7 @@ struct AddButton: View {
 }
 
 struct AddFavoriteLocationView: View {
-    @EnvironmentObject var viewModel: weather_forcastVM
+    @EnvironmentObject var viewModel: WeatherForcastVM
     @Binding var showEditSheet: Bool
     @State private var locationInput: String = ""
 

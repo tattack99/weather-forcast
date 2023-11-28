@@ -11,7 +11,7 @@ import CoreData
 
 
 struct ContentView: View {
-    @EnvironmentObject var viewModel : weather_forcastVM
+    @EnvironmentObject var viewModel : WeatherForcastVM
     
     var body: some View {
         StartScreen()
@@ -24,6 +24,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(weather_forcastVM())
+        ContentView().environmentObject(WeatherForcastVM())
     }
 }

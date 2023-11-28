@@ -10,12 +10,15 @@ import SwiftUI
 @main
 struct WatherForecastApp: App {
 
-    private var viewModel = weather_forcastVM()
+    private var viewModel =  WeatherForcastVM()
     
     var body: some Scene {
         WindowGroup {
                 ContentView()
                     .environmentObject(viewModel)
+                    .onAppear(){
+                        viewModel.handleEntities()
+                    }
             }
         }
 }

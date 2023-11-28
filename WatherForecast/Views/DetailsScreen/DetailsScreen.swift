@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailsScreen: View {
-    @EnvironmentObject var viewModel: weather_forcastVM
+    @EnvironmentObject var viewModel: WeatherForcastVM
     let location: Location
     
     @ViewBuilder

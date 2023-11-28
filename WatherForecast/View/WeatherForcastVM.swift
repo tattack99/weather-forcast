@@ -26,7 +26,7 @@ extension View {
     }
 }
 
-class weather_forcastVM : ObservableObject {
+class WeatherForcastVM : ObservableObject {
     @Published var locations: [Location] = []
     @Published var hasInternet: Bool = false
     @Published var deviceOrientation: UIDeviceOrientation = .portrait
@@ -35,9 +35,32 @@ class weather_forcastVM : ObservableObject {
 
     private var model : WeatherForecastModel
 
-    init(){
+    init() {
         self.model = WeatherForecastModel()
-        loadEntities()
+    }
+    
+    func handleEntities() {
+
+        Task{
+            let isConnected = await model.checkInternetConnection()
+            if(isConnected){
+                print("isConnected")
+                loadEntities()
+                let locationNames = locations.map{ $0.name }
+                print(locationNames)
+                if(locationNames.count > 0){
+                    dropStorage()
+                    for name in locationNames {
+                        await fetchWeatherData(locationName: name)
+                    }
+                }
+                
+            }else {
+                print("Not connected")
+                loadEntities()
+            }
+        }
+
     }
     
     func updateDeviceOrientation(orientation: UIDeviceOrientation) {
@@ -55,12 +78,7 @@ class weather_forcastVM : ObservableObject {
     }
 
     func fetchWeatherData(locationName:String) async {
-        checkInternetConnection()
         
-        if !self.hasInternet {
-            loadEntities()
-            return
-        }
         
         let locationData = await model.fetchLocationData(locationName: locationName) ?? LocationDataJson.empty
         let data = await model.fetchWeatherData(lat: locationData.lat, lon: locationData.lon, locationName: locationName)
@@ -83,6 +101,10 @@ class weather_forcastVM : ObservableObject {
                 self.locations = sortFavoriteLocations(unsortedLocations)
             }
         }
+    }
+    
+    private func dropStorage(){
+        model.dropDatabase()
     }
 
     
