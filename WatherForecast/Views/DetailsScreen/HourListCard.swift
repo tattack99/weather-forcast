@@ -22,8 +22,8 @@ struct HourListCard: View {
                 }
             }
         }
-        .BlurCardStyle(light: location.currentData.isDay)
-        .padding()
+        .BlurCardStyle(isDay: location.currentData.isDay)
+        .padding(.horizontal, 10)
     }
 }
 
@@ -70,22 +70,22 @@ struct HourItem : View{
         VStack{
             Text(data.time)
                 .foregroundColor(.white)
-                .font(.custom("Exo-regular", size: 16))
+                .font(.custom("Exo-regular", size: 12))
             
             Image(image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 30)
+                .frame(width: 26)
              
             
             HStack{
                 Text("\(Int(data.temp))")
                     .foregroundColor(.white)
-                    .font(.custom("Exo-regular", size: 18))
+                    .font(.custom("Exo-regular", size: 12))
                     
                 Text("º")
                     .foregroundColor(.white)
-                    .font(.system(size: 18))
+                    .font(.system(size: 12))
                     .padding(.leading, -8)
                     
             }

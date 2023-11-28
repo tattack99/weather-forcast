@@ -10,14 +10,39 @@ import SwiftUI
 struct StartScreen: View {
     @EnvironmentObject var viewModel: WeatherForcastVM
     @State private var selectedLocation: Location?
-
+    
+    var img: String {
+        get{
+            return isDaytime() ? "bg-light" : "bg-dark"
+        }
+    }
 
     var body: some View {
         Group{
-            if viewModel.deviceOrientation.isPortrait {
+            if viewModel.deviceOrientation.isLandscape {
+                NavigationView {
+                    
+                    VStack{
+                        
+                        ScrollView {
+                            ForEach(viewModel.locations, id: \.self) { location in
+                                NavigationLink(destination: DetailsScreen(location: location)) {
+                                    FavoriteLocationCard(location: location)
+                                        .padding(.bottom, 10)
+                                }
+                            }
+                        }
+                        .navigationBarItems(leading: AddButton())
+                        .navigationBarItems(trailing: connected)
+                        .background(BackgroundImage(imageName: img, overlayOpacity: 0.1).edgesIgnoringSafeArea(.all))
+                    }
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
+            }
+            else {
                 NavigationView {
                     ZStack {
-                        BackgroundImage(imageName: isDaytime() ? "start-bg-light" : "start-bg-dark", overlayOpacity: 0.1)
+                        BackgroundImage(imageName:  img, overlayOpacity: 0.1)
                         VStack (alignment:.leading) {
                             HStack{
                                 Spacer()
@@ -39,26 +64,7 @@ struct StartScreen: View {
                         .padding(.top, 30)
                     }
                 }
-            }
-            else {
-                NavigationView {
-                    
-                    VStack{
-                        
-                        ScrollView {
-                            ForEach(viewModel.locations, id: \.self) { location in
-                                NavigationLink(destination: DetailsScreen(location: location)) {
-                                    FavoriteLocationCard(location: location)
-                                        .padding(.bottom, 10)
-                                }
-                            }
-                        }
-                        .navigationBarItems(leading: AddButton())
-                        .navigationBarItems(trailing: connected)
-                        .background(BackgroundImage(imageName: "start-bg-light", overlayOpacity: 0.1).edgesIgnoringSafeArea(.all))
-                    }
-                }
-                .navigationViewStyle(StackNavigationViewStyle())
+                
             }
         }
         .onRotate { newOrientation in viewModel.deviceOrientation = newOrientation}

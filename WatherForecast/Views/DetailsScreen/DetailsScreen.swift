@@ -11,26 +11,33 @@ struct DetailsScreen: View {
     @EnvironmentObject var viewModel: WeatherForcastVM
     let location: Location
     
+    var img: String {
+        get{
+            return location.currentData.isDay ? "bg-light" : "bg-dark"
+        }
+    }
+    
     @ViewBuilder
     var body: some View {
         Group {
-            if viewModel.deviceOrientation.isPortrait {
-                portraitView
-            } else {
+            if viewModel.deviceOrientation.isLandscape {
                 landscapeView
+                
+            } else {
+                portraitView
             }
         }
     }
     private var portraitView: some View {
             ZStack {
-                BackgroundImage(imageName: location.currentData.isDay ? "details-bg-light" : "details-bg-dark", overlayOpacity: 0.1)
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        TemperatureView(location:location)
-                        HourListCard(location:location).padding(.vertical, -20)
-                        DayListCard(location:location).padding(.bottom, 30)
-                    }
+                BackgroundImage(imageName: img, overlayOpacity: 0.1)
+                
+                VStack {
+                    TemperatureView(location:location).padding(.top, 30)
+                    HourListCard(location:location)
+                    DayListCard(location:location).padding(.bottom, 20)
                 }
+                
             }
             .edgesIgnoringSafeArea(.all)
         }
@@ -38,7 +45,7 @@ struct DetailsScreen: View {
         private var landscapeView: some View {
             // Your implementation for landscape orientation
             ZStack {
-                BackgroundImage(imageName: "details-bg-light", overlayOpacity: 0.1)
+                BackgroundImage(imageName: img, overlayOpacity: 0.1)
                     .position(backgroundPosition)
                 ScrollView(showsIndicators: false) {
                     VStack {

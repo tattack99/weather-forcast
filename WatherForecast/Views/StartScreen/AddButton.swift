@@ -16,10 +16,9 @@ struct AddButton: View {
             Image(systemName: "plus")
                 .foregroundColor(.white)
                 .font(.title2)
-                .padding(15)
-                .background(VisualEffectBlur(effect: UIBlurEffect(style: .systemUltraThinMaterialDark)))
-                .cornerRadius(20)
-                .padding(.bottom, 10)
+                .padding(10)
+                .background(VisualEffectBlur(effect: UIBlurEffect(style: .regular )))
+                .cornerRadius(15)
         }
         .sheet(isPresented: $showEditSheet) {
             AddFavoriteLocationView(showEditSheet: $showEditSheet)

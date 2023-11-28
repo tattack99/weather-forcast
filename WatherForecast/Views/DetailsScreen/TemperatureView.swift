@@ -46,13 +46,19 @@ struct TemperatureView: View {
     
     var body: some View {
         VStack{
-            Text(location.name).font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -8)
             
+         
+            Text(location.name).font(.custom("Exo-Bold", size: 40)).foregroundColor(.white).padding(.bottom, -6)
             Image(image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 120).padding(.top,5)
-            Text("Today \(location.currentData.date)").font(.custom("Exo-Medium", size: 18)).foregroundColor(.white).padding(.bottom, -10)
+                .frame(width: 80).padding(.top,5)
+            
+            
+         
+   
+                Text("Today \(location.currentData.date) \(location.currentData.time)").font(.custom("Exo-Medium", size: 12)).foregroundColor(.white)
+    
             
             HStack{
                 Spacer()
@@ -62,12 +68,12 @@ struct TemperatureView: View {
                     Text("\(Int(location.currentData.temp))")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .font(Font.custom("Exo-Bold", size: 100))
+                        .font(Font.custom("Exo-Bold", size: 75))
                         
                     Text("º")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .font(.system(size: 70))
+                        .font(.system(size: 50))
                         .padding(.leading, -5)
                 }
                 Spacer()
@@ -92,7 +98,7 @@ struct SunView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 30)
-            Text(time).font(.custom("Exo-Medium", size: 18)).foregroundColor(.white)
+            Text(time).font(.custom("Exo-Medium", size: 12)).foregroundColor(.white)
         }
     }
 }

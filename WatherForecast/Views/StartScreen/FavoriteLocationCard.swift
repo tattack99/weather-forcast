@@ -76,7 +76,7 @@ struct FavoriteLocationCard: View {
                     .frame(width: 100)
                     
             }
-            .BlurCardStyle(light: location.currentData.isDay)
+            .BlurCardStyle(isDay: false)
             
 
         }

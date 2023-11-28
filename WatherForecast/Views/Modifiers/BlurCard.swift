@@ -21,26 +21,20 @@ struct VisualEffectBlur: UIViewRepresentable {
 }
 
 struct BlurCardModifier: ViewModifier {
-    let light: Bool
+    let isDay:Bool
     func body(content: Content) -> some View {
         content
-            .padding(25)
+            .padding(20)
             
-            .background(VisualEffectBlur(effect: UIBlurEffect(style: light ? .systemUltraThinMaterialDark : .regular)))
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 40)
-//                    .stroke(
-//                        LinearGradient(gradient: Gradient(colors: [.white.opacity(0.8), .white.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing),
-//                        lineWidth: 2
-//                )
-//            )
-            .cornerRadius(40)
+            .background(VisualEffectBlur(effect: UIBlurEffect(style: isDay ? .regular: .systemUltraThinMaterialDark)))
+
+            .cornerRadius(30)
     }
 }
 
 extension View {
 
-    func BlurCardStyle(light:Bool) -> some View {
-        self.modifier(BlurCardModifier(light:light))
+    func BlurCardStyle(isDay:Bool) -> some View {
+        self.modifier(BlurCardModifier(isDay:isDay))
     }
 }

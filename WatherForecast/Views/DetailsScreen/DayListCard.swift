@@ -13,7 +13,7 @@ struct DayListCard: View {
     let location : Location
     var body: some View {
         VStack(alignment: .leading){
-            Text("Daily forecast").foregroundColor(.white).font(.custom("Exo-regular", size: 14)).padding(.bottom, 5)
+            Text("Daily forecast").foregroundColor(.white).font(.custom("Exo-regular", size: 14)).padding(.bottom, 3)
             
             VStack(spacing: 20) {
                 ForEach(location.dayData, id: \.self) { day in
@@ -24,9 +24,9 @@ struct DayListCard: View {
             .frame(maxWidth: .infinity)
             
         }
-        .frame(maxHeight: 400)
-        .BlurCardStyle(light: location.currentData.isDay)
-        .padding()
+        .frame(maxHeight: 300)
+        .BlurCardStyle(isDay: location.currentData.isDay)
+        .padding(.horizontal, 10)
     }
 }
 
@@ -84,7 +84,7 @@ struct DayItem : View{
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30)
                     .padding(.trailing, 5)
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 5)
                 
                
             }
@@ -98,11 +98,11 @@ struct DayItem : View{
                     
                     Text("\(data.rainProp)%")
                         .foregroundColor(.white)
-                        .font(.custom("Exo-regular", size: 16))
+                        .font(.custom("Exo-regular", size: 14))
                 }
                
             }
-            .padding(.leading, 20)
+            .padding(.leading, 10)
           
             
             Spacer()
@@ -111,11 +111,11 @@ struct DayItem : View{
             HStack{
                 Text("\(Int(data.temp))")
                     .foregroundColor(.white)
-                    .font(.custom("Exo-regular", size: 18))
+                    .font(.custom("Exo-regular", size: 14))
                     
                 Text("º")
                     .foregroundColor(.white)
-                    .font(.system(size: 18))
+                    .font(.system(size: 14))
                     .padding(.leading, -8)
                     
             }
